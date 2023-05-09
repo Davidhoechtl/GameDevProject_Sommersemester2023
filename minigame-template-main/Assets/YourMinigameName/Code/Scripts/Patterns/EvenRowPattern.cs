@@ -14,15 +14,15 @@ namespace Assets.YourMinigameName.Code.Scripts.Patterns
         {
             return new bool[10, 10]
             {
-                { true, true, true, true, false, true, true, true, true, true },
+                { true, true, true, true, true, true, true, true, true, true },
                 { false, false, false, false, false, false, false, false, false, false },
-                { true, true, true, true, false, true, true, true, true, true },
+                { true, true, true, true, true, true, true, true, true, true },
                 { false, false, false, false, false, false, false, false, false, false },
-                { true, true, true, true, false, true, true, true, true, true },
+                { true, true, true, true, true, true, true, true, true, true },
                 { false, false, false, false, false, false, false, false, false, false },
-                { true, true, true, true, false, true, true, true, true, true },
+                { true, true, true, true, true, true, true, true, true, true },
                 { false, false, false, false, false, false, false, false, false, false },
-                { true, true, true, true, false, true, true, true, true, true },
+                { true, true, true, true, true, true, true, true, true, true },
                 { false, false, false, false, false, false, false, false, false, false },
             };
         }
