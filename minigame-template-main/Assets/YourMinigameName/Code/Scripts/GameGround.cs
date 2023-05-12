@@ -19,7 +19,7 @@ public class GameGround : MonoBehaviour
         map = CreateGameGround();
         patternService = new PatternService();
 
-        StartCoroutine(ApplyPatternWithDelay(WaitBeforeFallingTimeInSec * 2));
+        StartCoroutine(ApplyPatternWithDelay(2));
     }
 
     // Update is called once per frame
@@ -31,6 +31,11 @@ public class GameGround : MonoBehaviour
     {
         while (true)
         {
+            while (!IsEveryCubeBackToNormal())
+            {
+                yield return new WaitForSeconds(0.5f);
+            }
+
             yield return new WaitForSeconds(delayInSeconds);
             ApplyMatrix(patternService.GetRandomPattern());
         }
@@ -56,9 +61,9 @@ public class GameGround : MonoBehaviour
         }
     }
 
-    private GameObject[,] CreateGameGround()
+    private MovingCube[,] CreateGameGround()
     {
-        GameObject[,] map = new GameObject[10, 10];
+        MovingCube[,] map = new MovingCube[10, 10];
 
         float margin = 0.02f;
         for (int x = 0; x < 10; x++)
@@ -73,7 +78,7 @@ public class GameGround : MonoBehaviour
                 cube.StationaryMaterial = NormalMaterial;
                 cube.FallingMaterial = AcitvatedMaterial;
 
-                map[x, y] = item;
+                map[x, y] = cube;
             }
         }
 
@@ -82,6 +87,20 @@ public class GameGround : MonoBehaviour
         return map;
     }
 
-    private GameObject[,] map;
+    private bool IsEveryCubeBackToNormal()
+    {
+        bool finished = true;
+        foreach (MovingCube cube in map)
+        {
+            if (cube.IsActivated())
+            {
+                finished = false;
+            }
+        }
+
+        return finished;
+    }
+
+    private MovingCube[,] map;
     private PatternService patternService;
 }
