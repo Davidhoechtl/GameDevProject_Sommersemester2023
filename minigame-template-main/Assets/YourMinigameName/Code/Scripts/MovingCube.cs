@@ -25,19 +25,19 @@ namespace Assets.YourMinigameName.Code.Scripts
 
         private void Update()
         {
-            if(activated == false)
+            if(falling == false)
             {
                 return;
             }
 
             float travellingDistance = FallingSpped * Time.deltaTime;
 
-            if (falling)
+            if (activated)
             {
                 if (transform.position.y - travellingDistance < YFallingBound)
                 {
                     transform.position = new Vector3(transform.position.x, YFallingBound, transform.position.z);
-                    falling = false;
+                    activated = false;
                     GetComponent<MeshRenderer>().material = StationaryMaterial;
                 }
                 else
@@ -50,8 +50,7 @@ namespace Assets.YourMinigameName.Code.Scripts
                 if (transform.position.y + travellingDistance > YNormalPosition)
                 {
                     transform.position = new Vector3(transform.position.x, YNormalPosition, transform.position.z);
-
-                    activated = false;
+                    falling = false;
                 }
                 else
                 {
@@ -60,17 +59,17 @@ namespace Assets.YourMinigameName.Code.Scripts
             }
         }
 
-        public IEnumerator StartFalling( float waitingTime )
+        public IEnumerator StartFalling( float indicationTime )
         {
             activated = true;
             GetComponent<MeshRenderer>().material = FallingMaterial;
-            yield return new WaitForSeconds( waitingTime );
+            yield return new WaitForSeconds( indicationTime );
             falling = true;
         }
 
         public bool IsActivated()
         {
-            return activated || falling;
+            return falling || activated;
         }
 
         private bool falling = false;
