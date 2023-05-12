@@ -1,3 +1,4 @@
+using Assets.YourMinigameName.Code.Scripts;
 using Assets.YourMinigameName.Code.Scripts.Patterns;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,13 +11,15 @@ public class GameGround : MonoBehaviour
     public Material AcitvatedMaterial;
     public Material NormalMaterial;
 
+    public float WaitBeforeFallingTimeInSec = 2;
+
     // Start is called before the first frame update
     void Start()
     {
         map = CreateGameGround();
         patternService = new PatternService();
 
-        StartCoroutine(ApplyPatternWithDelay(2));
+        StartCoroutine(ApplyPatternWithDelay(WaitBeforeFallingTimeInSec * 2));
     }
 
     // Update is called once per frame
@@ -24,7 +27,7 @@ public class GameGround : MonoBehaviour
     {
     }
 
-    private IEnumerator ApplyPatternWithDelay(int delayInSeconds)
+    private IEnumerator ApplyPatternWithDelay(float delayInSeconds)
     {
         while (true)
         {
@@ -46,17 +49,11 @@ public class GameGround : MonoBehaviour
             {
                 if (matrix[x, y])
                 {
-                    StartCoroutine(ActivateForFalling(map[x, y]));
+                    MovingCube cube = map[x, y].GetComponent<MovingCube>();
+                    StartCoroutine(cube.StartFalling(WaitBeforeFallingTimeInSec));
                 }
             }
         }
-    }
-
-    private IEnumerator ActivateForFalling(GameObject obj)
-    {
-        obj.GetComponent<MeshRenderer>().material = AcitvatedMaterial;
-        yield return new WaitForSeconds(1);
-        obj.GetComponent<MeshRenderer>().material = NormalMaterial;
     }
 
     private GameObject[,] CreateGameGround()
@@ -71,6 +68,11 @@ public class GameGround : MonoBehaviour
                 Vector3 pos = new Vector3(x + (margin * x), 0, y + (margin * y));
                 GameObject item = Instantiate(CubePrefab, pos, CubePrefab.transform.rotation);
                 item.transform.parent = gameObject.transform;
+
+                MovingCube cube = item.AddComponent<MovingCube>();
+                cube.StationaryMaterial = NormalMaterial;
+                cube.FallingMaterial = AcitvatedMaterial;
+
                 map[x, y] = item;
             }
         }
