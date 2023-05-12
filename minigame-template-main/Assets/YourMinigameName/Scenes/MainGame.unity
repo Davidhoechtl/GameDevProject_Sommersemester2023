@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -169,8 +169,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CubePrefab: {fileID: 8147091776297228424, guid: a459dbbdb3ac69d45a4fc9d4ec648be3,
     type: 3}
-  AcitvatedMaterial: {fileID: 2100000, guid: 19dafe7d9b09a3c40aef1fd1ba52a35f, type: 2}
-  NormalMaterial: {fileID: 2100000, guid: 4ce584559401abb46a89ee05d27c625b, type: 2}
+  StationaryMaterial: {fileID: 2100000, guid: 4ce584559401abb46a89ee05d27c625b, type: 2}
+  FallingMaterial: {fileID: 2100000, guid: 19dafe7d9b09a3c40aef1fd1ba52a35f, type: 2}
+  WaitBeforeFallingTimeInSec: 2
+  WaitBetweenPatternInSec: 1
 --- !u!1 &211228158
 GameObject:
   m_ObjectHideFlags: 0
