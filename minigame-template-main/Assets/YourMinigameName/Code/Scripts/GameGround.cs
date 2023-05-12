@@ -1,3 +1,4 @@
+using Assets.YourMinigameName.Code.Scripts;
 using Assets.YourMinigameName.Code.Scripts.Patterns;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,6 +10,8 @@ public class GameGround : MonoBehaviour
     public GameObject CubePrefab;
     public Material AcitvatedMaterial;
     public Material NormalMaterial;
+
+    public float WaitBeforeFallingTimeInSec = 2;
 
     // Start is called before the first frame update
     void Start()
@@ -24,10 +27,15 @@ public class GameGround : MonoBehaviour
     {
     }
 
-    private IEnumerator ApplyPatternWithDelay(int delayInSeconds)
+    private IEnumerator ApplyPatternWithDelay(float delayInSeconds)
     {
         while (true)
         {
+            while (!IsEveryCubeBackToNormal())
+            {
+                yield return new WaitForSeconds(0.5f);
+            }
+
             yield return new WaitForSeconds(delayInSeconds);
             ApplyMatrix(patternService.GetRandomPattern());
         }
@@ -46,22 +54,16 @@ public class GameGround : MonoBehaviour
             {
                 if (matrix[x, y])
                 {
-                    StartCoroutine(ActivateForFalling(map[x, y]));
+                    MovingCube cube = map[x, y].GetComponent<MovingCube>();
+                    StartCoroutine(cube.StartFalling(WaitBeforeFallingTimeInSec));
                 }
             }
         }
     }
 
-    private IEnumerator ActivateForFalling(GameObject obj)
+    private MovingCube[,] CreateGameGround()
     {
-        obj.GetComponent<MeshRenderer>().material = AcitvatedMaterial;
-        yield return new WaitForSeconds(1);
-        obj.GetComponent<MeshRenderer>().material = NormalMaterial;
-    }
-
-    private GameObject[,] CreateGameGround()
-    {
-        GameObject[,] map = new GameObject[10, 10];
+        MovingCube[,] map = new MovingCube[10, 10];
 
         float margin = 0.02f;
         for (int x = 0; x < 10; x++)
@@ -71,7 +73,12 @@ public class GameGround : MonoBehaviour
                 Vector3 pos = new Vector3(x + (margin * x), 0, y + (margin * y));
                 GameObject item = Instantiate(CubePrefab, pos, CubePrefab.transform.rotation);
                 item.transform.parent = gameObject.transform;
-                map[x, y] = item;
+
+                MovingCube cube = item.AddComponent<MovingCube>();
+                cube.StationaryMaterial = NormalMaterial;
+                cube.FallingMaterial = AcitvatedMaterial;
+
+                map[x, y] = cube;
             }
         }
 
@@ -80,6 +87,20 @@ public class GameGround : MonoBehaviour
         return map;
     }
 
-    private GameObject[,] map;
+    private bool IsEveryCubeBackToNormal()
+    {
+        bool finished = true;
+        foreach (MovingCube cube in map)
+        {
+            if (cube.IsActivated())
+            {
+                finished = false;
+            }
+        }
+
+        return finished;
+    }
+
+    private MovingCube[,] map;
     private PatternService patternService;
 }
