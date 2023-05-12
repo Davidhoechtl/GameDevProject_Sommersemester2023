@@ -12,6 +12,7 @@ public class GameGround : MonoBehaviour
     public Material NormalMaterial;
 
     public float WaitBeforeFallingTimeInSec = 2;
+    public float WaitBetweenPatternInSec = 2;
 
     // Start is called before the first frame update
     void Start()
@@ -19,7 +20,7 @@ public class GameGround : MonoBehaviour
         map = CreateGameGround();
         patternService = new PatternService();
 
-        StartCoroutine(ApplyPatternWithDelay(2));
+        StartCoroutine(ApplyPatternWithDelay(WaitBetweenPatternInSec));
     }
 
     // Update is called once per frame
