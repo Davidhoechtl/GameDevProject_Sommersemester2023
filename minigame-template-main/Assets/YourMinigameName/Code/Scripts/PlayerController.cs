@@ -10,10 +10,12 @@ namespace Assets.YourMinigameName.Code.Scripts
 
         public float horizontalInput;
         public float verticalInput;
-
         private Vector2 moveDirection = Vector2.zero;
 
-        public InputAction playerInput;
+        [SerializeField]
+        private InputActionAsset playerControls;
+        private InputAction pauseAction;
+        private InputAction movementAction;
         // Start is called before the first frame update
         void Start()
         {
@@ -22,20 +24,32 @@ namespace Assets.YourMinigameName.Code.Scripts
 
         private void OnEnable()
         {
-            playerInput.Enable();
+            movementAction = playerControls.FindActionMap("Player").FindAction("Move");
+            movementAction.Enable();
+
+            pauseAction = playerControls.FindActionMap("UI").FindAction("Pause");
+            pauseAction.Enable();
+
+            pauseAction.started += OnPauseButtonPress;
         }
 
         private void OnDisable()
         {
-            playerInput.Disable();
+            movementAction.Disable();
         }
 
         // Update is called once per frame
         void Update()
         {
-            moveDirection = playerInput.ReadValue<Vector2>();
+            moveDirection = movementAction.ReadValue<Vector2>();
             Vector3 movement = new Vector3(moveDirection.x, 0, moveDirection.y).normalized;
             playerRb.AddForce(movement * Speed * Time.deltaTime, ForceMode.Force);
+
+        }
+
+        private void OnPauseButtonPress(InputAction.CallbackContext obj)
+        {
+            MenuHandler.Instance.PauseGame();
         }
 
         private Rigidbody playerRb;
