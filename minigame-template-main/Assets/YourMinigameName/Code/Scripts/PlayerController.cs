@@ -7,7 +7,16 @@ namespace Assets.YourMinigameName.Code.Scripts
     public class PlayerController : MonoBehaviour
     {
         public float speed = 20;
+        public float jumpAmount = 10;
         private Vector2 movementInput;
+
+
+        public Rigidbody rb;
+
+        private void Start()
+        {
+        }
+
 
 
         private void Update()
@@ -24,5 +33,13 @@ namespace Assets.YourMinigameName.Code.Scripts
         {
             MenuHandler.Instance.PauseGame();
         }
+
+        public void OnJump(InputAction.CallbackContext ctx)
+        {
+            rb.AddForce(Vector3.up * jumpAmount, ForceMode.Impulse);
+            
+        }
+
+    
     }
 }
