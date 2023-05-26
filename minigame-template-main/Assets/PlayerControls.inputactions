@@ -771,6 +771,34 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Gameplay",
+            "id": "d57f3d7c-292c-4cef-9f15-4c3afba04779",
+            "actions": [
+                {
+                    "name": "Move",
+                    "type": "Value",
+                    "id": "e077155e-722f-419a-9e82-9c54f55a209d",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "702a1af4-ac2a-43cb-b230-c4bb9dfe6e40",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [
