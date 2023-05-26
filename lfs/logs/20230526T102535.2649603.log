@@ -1,0 +1,116 @@
+git-lfs/2.7.1 (GitHub; windows amd64; go 1.11.5; git 6b7fb6e3)
+git version 2.21.0.windows.1
+
+$ git.exe filter-process
+Error downloading object: minigame-template-main/Assets/TextMesh Pro/Fonts/LiberationSans.ttf (e5b0af4): Smudge error: Error downloading minigame-template-main/Assets/TextMesh Pro/Fonts/LiberationSans.ttf (e5b0af421ea2bfbc1ac8d251d647268087ae82786234c57f757d1f0b90fa8b49): batch request: missing protocol: ""
+
+missing protocol: ""
+batch request
+github.com/git-lfs/git-lfs/errors.newWrappedError
+	C:/Users/brian m. carlson/checkouts/git-lfs/errors/types.go:198
+github.com/git-lfs/git-lfs/errors.Wrap
+	C:/Users/brian m. carlson/checkouts/git-lfs/errors/errors.go:74
+github.com/git-lfs/git-lfs/tq.(*tqClient).Batch
+	C:/Users/brian m. carlson/checkouts/git-lfs/tq/api.go:63
+github.com/git-lfs/git-lfs/tq.Batch
+	C:/Users/brian m. carlson/checkouts/git-lfs/tq/api.go:40
+github.com/git-lfs/git-lfs/tq.(*TransferQueue).enqueueAndCollectRetriesFor
+	C:/Users/brian m. carlson/checkouts/git-lfs/tq/transfer_queue.go:470
+github.com/git-lfs/git-lfs/tq.(*TransferQueue).collectBatches.func1
+	C:/Users/brian m. carlson/checkouts/git-lfs/tq/transfer_queue.go:391
+runtime.goexit
+	C:/Go/src/runtime/asm_amd64.s:1333
+Error downloading minigame-template-main/Assets/TextMesh Pro/Fonts/LiberationSans.ttf (e5b0af421ea2bfbc1ac8d251d647268087ae82786234c57f757d1f0b90fa8b49)
+github.com/git-lfs/git-lfs/errors.newWrappedError
+	C:/Users/brian m. carlson/checkouts/git-lfs/errors/types.go:198
+github.com/git-lfs/git-lfs/errors.Wrapf
+	C:/Users/brian m. carlson/checkouts/git-lfs/errors/errors.go:85
+github.com/git-lfs/git-lfs/lfs.(*GitFilter).downloadFile
+	C:/Users/brian m. carlson/checkouts/git-lfs/lfs/gitfilter_smudge.go:110
+github.com/git-lfs/git-lfs/lfs.(*GitFilter).Smudge
+	C:/Users/brian m. carlson/checkouts/git-lfs/lfs/gitfilter_smudge.go:71
+github.com/git-lfs/git-lfs/commands.smudge
+	C:/Users/brian m. carlson/checkouts/git-lfs/commands/command_smudge.go:127
+github.com/git-lfs/git-lfs/commands.filterCommand
+	C:/Users/brian m. carlson/checkouts/git-lfs/commands/command_filter_process.go:118
+github.com/spf13/cobra.(*Command).execute
+	C:/Users/brian m. carlson/go/pkg/mod/github.com/spf13/cobra@v0.0.3/command.go:766
+github.com/spf13/cobra.(*Command).ExecuteC
+	C:/Users/brian m. carlson/go/pkg/mod/github.com/spf13/cobra@v0.0.3/command.go:852
+github.com/spf13/cobra.(*Command).Execute
+	C:/Users/brian m. carlson/go/pkg/mod/github.com/spf13/cobra@v0.0.3/command.go:800
+github.com/git-lfs/git-lfs/commands.Run
+	C:/Users/brian m. carlson/checkouts/git-lfs/commands/run.go:97
+main.main
+	C:/Users/brian m. carlson/checkouts/git-lfs/git-lfs.go:33
+runtime.main
+	C:/Go/src/runtime/proc.go:201
+runtime.goexit
+	C:/Go/src/runtime/asm_amd64.s:1333
+Smudge error
+github.com/git-lfs/git-lfs/errors.newWrappedError
+	C:/Users/brian m. carlson/checkouts/git-lfs/errors/types.go:198
+github.com/git-lfs/git-lfs/errors.NewSmudgeError
+	C:/Users/brian m. carlson/checkouts/git-lfs/errors/types.go:284
+github.com/git-lfs/git-lfs/lfs.(*GitFilter).Smudge
+	C:/Users/brian m. carlson/checkouts/git-lfs/lfs/gitfilter_smudge.go:80
+github.com/git-lfs/git-lfs/commands.smudge
+	C:/Users/brian m. carlson/checkouts/git-lfs/commands/command_smudge.go:127
+github.com/git-lfs/git-lfs/commands.filterCommand
+	C:/Users/brian m. carlson/checkouts/git-lfs/commands/command_filter_process.go:118
+github.com/spf13/cobra.(*Command).execute
+	C:/Users/brian m. carlson/go/pkg/mod/github.com/spf13/cobra@v0.0.3/command.go:766
+github.com/spf13/cobra.(*Command).ExecuteC
+	C:/Users/brian m. carlson/go/pkg/mod/github.com/spf13/cobra@v0.0.3/command.go:852
+github.com/spf13/cobra.(*Command).Execute
+	C:/Users/brian m. carlson/go/pkg/mod/github.com/spf13/cobra@v0.0.3/command.go:800
+github.com/git-lfs/git-lfs/commands.Run
+	C:/Users/brian m. carlson/checkouts/git-lfs/commands/run.go:97
+main.main
+	C:/Users/brian m. carlson/checkouts/git-lfs/git-lfs.go:33
+runtime.main
+	C:/Go/src/runtime/proc.go:201
+runtime.goexit
+	C:/Go/src/runtime/asm_amd64.s:1333
+
+Current time in UTC: 
+2023-05-26 08:25:35
+
+ENV:
+LocalWorkingDir=
+LocalGitDir=
+LocalGitStorageDir=
+LocalMediaDir=lfs\objects
+LocalReferenceDirs=
+TempDir=lfs\tmp
+ConcurrentTransfers=3
+TusTransfers=false
+BasicTransfersOnly=false
+SkipDownloadErrors=false
+FetchRecentAlways=false
+FetchRecentRefsDays=7
+FetchRecentCommitsDays=0
+FetchRecentRefsIncludeRemotes=true
+PruneOffsetDays=3
+PruneVerifyRemoteAlways=false
+PruneRemoteName=origin
+LfsStorageDir=lfs
+AccessDownload=none
+AccessUpload=none
+DownloadTransfers=basic
+UploadTransfers=basic
+GIT_ASKPASS=c:/program files/microsoft visual studio/2022/community/common7/ide/commonextensions/microsoft/teamfoundation/team explorer/Git/mingw64/bin\git-askpass.exe
+GIT_CEILING_DIRECTORIES=C:/Studium/GAME
+GIT_CONFIG_PARAMETERS='gc.auto'='0' 'credential.helper'='manager' 'core.askpass'='c:/program files/microsoft visual studio/2022/community/common7/ide/commonextensions/microsoft/teamfoundation/team explorer/Git/mingw64/bin\git-askpass.exe' 'rebase.backend'='apply'
+GIT_EXEC_PATH=c:/program files/microsoft visual studio/2022/community/common7/ide/commonextensions/microsoft/teamfoundation/team explorer/Git/mingw64/libexec/git-core
+GIT_FLUSH=1
+GIT_HTTP_USER_AGENT=git/2.39.2 (Microsoft Windows NT 10.0.19045.0; Win32NT x64) CLR/4.0.30319 VS17/17.0.0
+GIT_MERGE_VERBOSITY=4
+GIT_PAGER=cat
+GIT_PREFIX=
+GIT_REFLOG_ACTION=pull --progress --no-edit --no-stat --recurse-submodules=no origin
+GIT_TERMINAL_PROMPT=0
+
+Client IP addresses:
+fe80::3c8e:7813:7610:76da 172.30.128.1
+2001:67c:1790:e0c0:6b2f:8744:d669:3603 2001:67c:1790:e0c0:79a6:ed1f:1a42:ae77 fe80::ae23:a4af:c7c1:bf96 10.192.22.106

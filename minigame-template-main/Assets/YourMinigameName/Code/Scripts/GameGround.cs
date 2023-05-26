@@ -1,106 +1,143 @@
-using Assets.YourMinigameName.Code.Scripts;
-using Assets.YourMinigameName.Code.Scripts.Patterns;
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using UnityEngine;
 
-public class GameGround : MonoBehaviour
+namespace Assets.YourMinigameName.Code.Scripts
 {
-    public GameObject CubePrefab;
-    public Material AcitvatedMaterial;
-    public Material NormalMaterial;
+    using Assets.YourMinigameName.Code.Scripts.Patterns;
+    using System.Collections;
+    using UnityEngine;
 
-    public float WaitBeforeFallingTimeInSec = 2;
-
-    // Start is called before the first frame update
-    void Start()
+    public class GameGround : MonoBehaviour
     {
-        map = CreateGameGround();
-        patternService = new PatternService();
+        /// <summary>
+        /// GameObject that represents one tile of the game map
+        /// </summary>
+        public GameObject CubePrefab;
 
-        StartCoroutine(ApplyPatternWithDelay(2));
-    }
+        /// <summary>
+        /// Material that indicates the Cube is not going to move
+        /// </summary>
+        public Material StationaryMaterial;
 
-    // Update is called once per frame
-    void Update()
-    {
-    }
+        /// <summary>
+        /// Material that indicated the cube is going to move
+        /// </summary>
+        public Material FallingMaterial;
 
-    private IEnumerator ApplyPatternWithDelay(float delayInSeconds)
-    {
-        while (true)
+        /// <summary>
+        /// time between indication and falling in seconds
+        /// </summary>
+        public float WaitBeforeFallingTimeInSec = 2;
+
+        /// <summary>
+        /// Time between patterns in seconds
+        /// </summary>
+        public float WaitBetweenPatternInSec = 2;
+
+        // Start is called before the first frame update
+        void Start()
         {
-            while (!IsEveryCubeBackToNormal())
+            map = CreateGameGround();
+            patternService = new PatternService();
+
+            StartCoroutine(ApplyPatternWithDelay(WaitBetweenPatternInSec));
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+        }
+
+        /// <summary>
+        /// Starts the Pattern coroutine
+        /// </summary>
+        /// <param name="delayInSeconds"> time between patterns </param>
+        /// <returns></returns>
+        private IEnumerator ApplyPatternWithDelay(float delayInSeconds)
+        {
+            while (true)
             {
-                yield return new WaitForSeconds(0.5f);
+                while (!IsEveryCubeBackToNormal())
+                {
+                    yield return new WaitForSeconds(0.3f);
+                }
+
+                yield return new WaitForSeconds(delayInSeconds);
+                ApplyMatrix(patternService.GetRandomPattern());
+            }
+        }
+
+        /// <summary>
+        /// Applies a 2-dimensional bool array on the 2-dimensional Map
+        /// </summary>
+        /// <param name="matrix"> generated bool matrix </param>
+        /// <exception cref="System.InvalidOperationException"> thrown if the bool matrix does not fit the map matrix</exception>
+        private void ApplyMatrix(bool[,] matrix)
+        {
+            if (matrix.GetUpperBound(0) != map.GetUpperBound(0) || matrix.GetUpperBound(1) != map.GetUpperBound(1))
+            {
+                throw new System.InvalidOperationException("The matrix has not the correct size to match the map");
             }
 
-            yield return new WaitForSeconds(delayInSeconds);
-            ApplyMatrix(patternService.GetRandomPattern());
-        }
-    }
-
-    private void ApplyMatrix(bool[,] matrix)
-    {
-        if (matrix.GetUpperBound(0) != map.GetUpperBound(0) || matrix.GetUpperBound(1) != map.GetUpperBound(1))
-        {
-            throw new System.InvalidOperationException("The matrix has not the correct size to match the map");
-        }
-
-        for (int x = 0; x <= matrix.GetUpperBound(0); x++)
-        {
-            for (int y = 0; y <= matrix.GetUpperBound(1); y++)
+            for (int x = 0; x <= matrix.GetUpperBound(0); x++)
             {
-                if (matrix[x, y])
+                for (int y = 0; y <= matrix.GetUpperBound(1); y++)
                 {
-                    MovingCube cube = map[x, y].GetComponent<MovingCube>();
-                    StartCoroutine(cube.StartFalling(WaitBeforeFallingTimeInSec));
+                    if (matrix[x, y])
+                    {
+                        MovingCube cube = map[x, y].GetComponent<MovingCube>();
+                        StartCoroutine(cube.StartFalling(WaitBeforeFallingTimeInSec));
+                    }
                 }
             }
         }
-    }
 
-    private MovingCube[,] CreateGameGround()
-    {
-        MovingCube[,] map = new MovingCube[10, 10];
-
-        float margin = 0.02f;
-        for (int x = 0; x < 10; x++)
+        /// <summary>
+        /// Create Game Map (10x10 hardcoded)
+        /// </summary>
+        private MovingCube[,] CreateGameGround()
         {
-            for (int y = 0; y < 10; y++)
+            MovingCube[,] map = new MovingCube[10, 10];
+
+            float margin = 0.02f;
+            for (int x = 0; x < 10; x++)
             {
-                Vector3 pos = new Vector3(x + (margin * x), 0, y + (margin * y));
-                GameObject item = Instantiate(CubePrefab, pos, CubePrefab.transform.rotation);
-                item.transform.parent = gameObject.transform;
+                for (int y = 0; y < 10; y++)
+                {
+                    Vector3 pos = new Vector3(x + (margin * x), 0, y + (margin * y));
+                    GameObject item = Instantiate(CubePrefab, pos, CubePrefab.transform.rotation);
+                    item.transform.parent = gameObject.transform;
 
-                MovingCube cube = item.AddComponent<MovingCube>();
-                cube.StationaryMaterial = NormalMaterial;
-                cube.FallingMaterial = AcitvatedMaterial;
+                    MovingCube cube = item.AddComponent<MovingCube>();
+                    cube.StationaryMaterial = StationaryMaterial;
+                    cube.FallingMaterial = FallingMaterial;
 
-                map[x, y] = cube;
+                    map[x, y] = cube;
+                }
             }
+
+            gameObject.transform.localScale = new Vector3(5, 5, 5);
+
+            return map;
         }
 
-        gameObject.transform.localScale = new Vector3(5, 5, 5);
-
-        return map;
-    }
-
-    private bool IsEveryCubeBackToNormal()
-    {
-        bool finished = true;
-        foreach (MovingCube cube in map)
+        /// <summary>
+        /// Checks if every map element is back to its idle state. This needs to be checked before appling the next pattern
+        /// </summary>
+        /// <returns></returns>
+        private bool IsEveryCubeBackToNormal()
         {
-            if (cube.IsActivated())
+            bool finished = true;
+            foreach (MovingCube cube in map)
             {
-                finished = false;
+                if (cube.IsIdle())
+                {
+                    finished = false;
+                }
             }
+
+            return finished;
         }
 
-        return finished;
+        private MovingCube[,] map;
+        private PatternService patternService;
     }
-
-    private MovingCube[,] map;
-    private PatternService patternService;
 }

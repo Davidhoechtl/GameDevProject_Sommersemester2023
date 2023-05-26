@@ -16,6 +16,7 @@ namespace Assets.YourMinigameName.Code.Scripts.Patterns
                 new EvenRowPattern(),
                 new UnevenRowPattern(),
                 new CrossPattern(),
+                new RandomPattern(),
             };
         }
 

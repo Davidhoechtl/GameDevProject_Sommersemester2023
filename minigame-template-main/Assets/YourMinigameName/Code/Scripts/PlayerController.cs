@@ -1,26 +1,22 @@
-﻿using UnityEngine;
-
-public class PlayerController : MonoBehaviour
+﻿
+namespace Assets.YourMinigameName.Code.Scripts
 {
-    public float Speed = 200f;
+    using UnityEngine;
+    using UnityEngine.InputSystem;
 
-    public float horizontalInput;
-    public float verticalInput;
-    // Start is called before the first frame update
-    void Start()
+    public class PlayerController : MonoBehaviour
     {
-        playerRb = GetComponent<Rigidbody>();
+        public float speed = 20;
+        private Vector2 movementInput;
+
+        private void Update()
+        {
+            transform.Translate(new Vector3 (movementInput.x, 0, movementInput.y) * speed * Time.deltaTime);
+        }
+
+        public void OnMove(InputAction.CallbackContext ctx)
+        {
+            movementInput = ctx.ReadValue<Vector2>();
+        }
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        horizontalInput = Input.GetAxis("Horizontal");
-        verticalInput = Input.GetAxis("Vertical");
-
-        Vector3 movement = new Vector3(horizontalInput, 0, verticalInput).normalized;
-        playerRb.AddForce(movement * Speed * Time.deltaTime, ForceMode.Force);
-    }
-
-    private Rigidbody playerRb;
 }

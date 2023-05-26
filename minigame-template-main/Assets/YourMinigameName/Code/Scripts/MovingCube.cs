@@ -1,21 +1,37 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
-
+﻿
 namespace Assets.YourMinigameName.Code.Scripts
 {
+    using System.Collections;
+    using UnityEngine;
+
+    /// <summary>
+    /// Adds movement functionality for a ground element (cube)
+    /// </summary>
     public class MovingCube : MonoBehaviour
     {
+        /// <summary>
+        /// Material that indicates the Cube is not going to move
+        /// </summary>
         public Material StationaryMaterial;
+
+        /// <summary>
+        /// Material that indicated the cube is going to move
+        /// </summary>
         public Material FallingMaterial;
 
+        /// <summary>
+        /// Speed of Falling down and up
+        /// </summary>
         public float FallingSpped = 10;
+
+        /// <summary>
+        /// Y Boundary how far the cube will go down
+        /// </summary>
         public float YFallingBound = -10;
+
+        /// <summary>
+        /// Y Position that the gameobject has on its initialization
+        /// </summary>
         public float YNormalPosition;
 
         private void Start()
@@ -25,19 +41,19 @@ namespace Assets.YourMinigameName.Code.Scripts
 
         private void Update()
         {
-            if(activated == false)
+            if(falling == false)
             {
                 return;
             }
 
             float travellingDistance = FallingSpped * Time.deltaTime;
 
-            if (falling)
+            if (activated)
             {
                 if (transform.position.y - travellingDistance < YFallingBound)
                 {
                     transform.position = new Vector3(transform.position.x, YFallingBound, transform.position.z);
-                    falling = false;
+                    activated = false;
                     GetComponent<MeshRenderer>().material = StationaryMaterial;
                 }
                 else
@@ -50,8 +66,7 @@ namespace Assets.YourMinigameName.Code.Scripts
                 if (transform.position.y + travellingDistance > YNormalPosition)
                 {
                     transform.position = new Vector3(transform.position.x, YNormalPosition, transform.position.z);
-
-                    activated = false;
+                    falling = false;
                 }
                 else
                 {
@@ -60,17 +75,24 @@ namespace Assets.YourMinigameName.Code.Scripts
             }
         }
 
-        public IEnumerator StartFalling( float waitingTime )
+        /// <summary>
+        /// Coroutine that needs to be called for the Falling mechanic
+        /// </summary>
+        /// <param name="indicationTime"> time between indication and falling </param>
+        public IEnumerator StartFalling( float indicationTime )
         {
             activated = true;
             GetComponent<MeshRenderer>().material = FallingMaterial;
-            yield return new WaitForSeconds( waitingTime );
+            yield return new WaitForSeconds( indicationTime );
             falling = true;
         }
 
-        public bool IsActivated()
+        /// <summary>
+        /// Indicates wethever the cube is stationary (not falling or activated) or not
+        /// </summary>
+        public bool IsIdle()
         {
-            return activated || falling;
+            return falling || activated;
         }
 
         private bool falling = false;
