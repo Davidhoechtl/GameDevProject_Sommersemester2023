@@ -6,52 +6,18 @@ namespace Assets.YourMinigameName.Code.Scripts
 
     public class PlayerController : MonoBehaviour
     {
-        public float Speed = 200f;
+        public float speed = 20;
+        private Vector2 movementInput;
 
-        public float horizontalInput;
-        public float verticalInput;
-        private Vector2 moveDirection = Vector2.zero;
 
-        [SerializeField]
-        private InputActionAsset playerControls;
-        private InputAction pauseAction;
-        private InputAction movementAction;
-        // Start is called before the first frame update
-        void Start()
+        private void Update()
         {
-            playerRb = GetComponent<Rigidbody>();
+            transform.Translate(new Vector3 (movementInput.x, 0, movementInput.y) * speed * Time.deltaTime);
         }
 
-        private void OnEnable()
+        public void OnMove(InputAction.CallbackContext ctx)
         {
-            movementAction = playerControls.FindActionMap("Player").FindAction("Move");
-            movementAction.Enable();
-
-            pauseAction = playerControls.FindActionMap("UI").FindAction("Pause");
-            pauseAction.Enable();
-
-            pauseAction.started += OnPauseButtonPress;
+            movementInput = ctx.ReadValue<Vector2>();
         }
-
-        private void OnDisable()
-        {
-            movementAction.Disable();
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-            moveDirection = movementAction.ReadValue<Vector2>();
-            Vector3 movement = new Vector3(moveDirection.x, 0, moveDirection.y).normalized;
-            playerRb.AddForce(movement * Speed * Time.deltaTime, ForceMode.Force);
-
-        }
-
-        private void OnPauseButtonPress(InputAction.CallbackContext obj)
-        {
-            MenuHandler.Instance.PauseGame();
-        }
-
-        private Rigidbody playerRb;
     }
 }
