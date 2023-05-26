@@ -19,5 +19,10 @@ namespace Assets.YourMinigameName.Code.Scripts
         {
             movementInput = ctx.ReadValue<Vector2>();
         }
+
+        public void OnPause(InputAction.CallbackContext ctx)
+        {
+            MenuHandler.Instance.PauseGame();
+        }
     }
 }
