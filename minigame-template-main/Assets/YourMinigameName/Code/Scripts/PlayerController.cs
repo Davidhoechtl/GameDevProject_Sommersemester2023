@@ -1,4 +1,5 @@
 ﻿
+
 namespace Assets.YourMinigameName.Code.Scripts
 {
     using UnityEngine;
