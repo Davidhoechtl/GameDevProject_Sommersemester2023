@@ -73,3 +73,6 @@ crashlytics-build.properties
 
 # Ignore the Assets Folder
 /minigame-template-main/Assets/Imports
+
+# Ignore ProjectSettings Folder
+/minigame-template-main/ProjectSettings
