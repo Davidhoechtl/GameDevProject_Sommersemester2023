@@ -179,35 +179,11 @@ MonoBehaviour:
     m_ActionId: 14c071d6-9921-4009-94b6-6e3d939f150f
     m_ActionName: Lobby/Leave[/XInputControllerWindows/leftTrigger,/Keyboard/backspace]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8042304464758790430}
-        m_TargetAssemblyTypeName: Lobby, Assembly-CSharp
-        m_MethodName: IncreaseIndex
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: 651aade6-c90a-44a6-9a1a-f7824f6b9d67
     m_ActionName: Lobby/UI index increase[/XInputControllerWindows/rightStick/down,/Keyboard/downArrow]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8042304464758790430}
-        m_TargetAssemblyTypeName: Lobby, Assembly-CSharp
-        m_MethodName: DecreaseIndex
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: 45a3b3b8-5bfa-47c6-9846-13f0ca508886
     m_ActionName: Lobby/UI index decrease[/XInputControllerWindows/rightStick/up,/Keyboard/upArrow]
   m_NeverAutoSwitchControlSchemes: 0
