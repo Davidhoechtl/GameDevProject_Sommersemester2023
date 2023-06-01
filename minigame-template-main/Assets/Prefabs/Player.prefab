@@ -116,7 +116,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!114 &5164506498854919125
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -233,6 +233,23 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 3ccaea4b-2dfb-491c-93a1-3e93ac350b0d
     m_ActionName: Gameplay/Pause[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5164506498854919130}
+        m_TargetAssemblyTypeName: Assets.YourMinigameName.Code.Scripts.PlayerController,
+          Assembly-CSharp
+        m_MethodName: OnJump
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 1fee0ac1-9c88-4de6-ab81-d089d5fceefd
+    m_ActionName: Gameplay/Jump[/XInputControllerWindows/buttonSouth,/Keyboard/space]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Gamepad
   m_DefaultActionMap: Gameplay
@@ -250,4 +267,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df2d47b59f6686d44a47015a40e944c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20
+  speed: 10
+  jumpAmount: 10
+  rb: {fileID: 5164506498854919131}
