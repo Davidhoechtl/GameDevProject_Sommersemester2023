@@ -52,10 +52,12 @@ public class MainMenu : MonoBehaviour
     public void IncreasePlayerCount()
     {
         playerCount++;
+        //Debug.Log("Player Count ++" + playerCount);
     }
 
     public void DecreasePlayerCount()
     {
         playerCount--;
+        //Debug.Log("Player Count --" + playerCount);
     }
 }

@@ -11,6 +11,7 @@ public class Lobby : MonoBehaviour
     public Image image;
     public TMP_Text playerText;
     private float swapTimer = 0;
+    private bool isActive;
 
     private void Update()
     {
@@ -25,7 +26,12 @@ public class Lobby : MonoBehaviour
             playerText.text = "";
             Debug.Log("Joined Lobby");
             swapTimer = 1;
-            MainMenu.Instance.IncreasePlayerCount();
+            if(isActive == false)
+            {
+                MainMenu.Instance.IncreasePlayerCount();
+            }
+
+            isActive = true;
         }
     }
 
@@ -37,7 +43,11 @@ public class Lobby : MonoBehaviour
             playerText.text = "Press \"Rt\" to Join";
             Debug.Log("Leave Lobby");
             swapTimer = 1;
-            MainMenu.Instance.DecreasePlayerCount();
+            if(isActive == true)
+            {
+                MainMenu.Instance.DecreasePlayerCount();
+            }
+            isActive = false;
         }
     }
 
