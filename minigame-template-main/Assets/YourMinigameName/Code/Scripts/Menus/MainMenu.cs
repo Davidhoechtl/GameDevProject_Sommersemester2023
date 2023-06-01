@@ -6,26 +6,26 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    public int playerCount = 0;
-    public Button start_Game_Button;
-
     private bool canStartGame = false;
 
     public static MainMenu Instance { get; private set; }
 
     private void Start()
     {
-        if(Instance != null)
+        if (Instance != null)
         {
-            Debug.LogError("Multiple Instances of MainMenu");
-
+            Debug.LogError("More than one MainMenu");
         }
-        Instance = this;
+        else
+        {
+            Instance = this;
+            canStartGame = false;
+        }
     }
 
     private void Update()
     {
-        if (playerCount <= 0)
+        if (PlayerConfigurationManager.Instance.GetPlayerConfigurations().Count <= 0)
         {
             canStartGame = false;
         }
@@ -34,28 +34,17 @@ public class MainMenu : MonoBehaviour
             canStartGame = true;
         }
     }
+
     public void StartGame()
     {
         if (canStartGame)
         {
-            PlayerPrefs.SetInt("playerCount", playerCount);
-
             Debug.Log("resuming game");
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene("MainGame");
         }
         else
         {
             Debug.Log("No Players to play");
         }
-    }
-
-    public void IncreasePlayerCount()
-    {
-        playerCount++;
-    }
-
-    public void DecreasePlayerCount()
-    {
-        playerCount--;
     }
 }

@@ -39,8 +39,6 @@ public class MenuHandler : MonoBehaviour
             //{ MenuType.Lose, LoseMenu },
             //{ MenuType.Win, WinMenu }
         };
-
-        Debug.Log(SceneManager.GetActiveScene().buildIndex);
     }
 
     private void Update()
