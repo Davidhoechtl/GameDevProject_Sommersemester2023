@@ -259,3 +259,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 20
+  jumpAmount: 5
+  rb: {fileID: 5164506498854919131}

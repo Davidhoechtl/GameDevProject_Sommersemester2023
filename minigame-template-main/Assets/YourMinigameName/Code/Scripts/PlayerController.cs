@@ -37,7 +37,6 @@
 
         public void OnMove(InputAction.CallbackContext ctx)
         {
-            Debug.Log(movementInput);
             movementInput = ctx.ReadValue<Vector2>();
         }
 
@@ -56,8 +55,6 @@
 
         private void Input_onActionTriggered(CallbackContext obj)
         {
-            Debug.Log(obj.action.name);
-            //.actions
             if (obj.action.name == playerConfiguration.Input.actions.actionMaps[2].actions[0].name)
             {
                 OnMove(obj);
@@ -65,6 +62,10 @@
             else if (obj.action.name == playerConfiguration.Input.actions.actionMaps[2].actions[1].name)
             {
                 OnPause(obj);
+            }
+            else if (obj.action.name == playerConfiguration.Input.actions.actionMaps[2].actions[2].name)
+            {
+                OnJump(obj);
             }
         }
 

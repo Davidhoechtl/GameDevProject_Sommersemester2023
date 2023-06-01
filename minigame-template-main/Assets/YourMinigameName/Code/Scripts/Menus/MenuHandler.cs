@@ -36,7 +36,7 @@ public class MenuHandler : MonoBehaviour
         allMenus = new()
         {
             { MenuType.Pause, PauseMenu }
-            //{ MenuType.Lose, LoseMenu },
+            //{ MenuType.Lose, GameOverMenu }
             //{ MenuType.Win, WinMenu }
         };
     }
