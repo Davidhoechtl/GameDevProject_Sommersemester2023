@@ -241,6 +241,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 14c071d6-9921-4009-94b6-6e3d939f150f
     m_ActionName: Lobby/Leave[/XInputControllerWindows/leftTrigger,/DualShock4GamepadHID1/leftTrigger,/Keyboard/backspace]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1fee0ac1-9c88-4de6-ab81-d089d5fceefd
+    m_ActionName: Gameplay/Jump[/Keyboard/space]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Gamepad
   m_DefaultActionMap: Gameplay
@@ -258,6 +262,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df2d47b59f6686d44a47015a40e944c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20
-  jumpAmount: 5
+  speed: 10
+  jumpAmount: 10
   rb: {fileID: 5164506498854919131}
