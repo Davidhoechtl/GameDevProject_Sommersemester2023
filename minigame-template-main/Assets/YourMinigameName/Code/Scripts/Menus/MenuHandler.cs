@@ -36,7 +36,7 @@ public class MenuHandler : MonoBehaviour
         allMenus = new()
         {
             { MenuType.Pause, PauseMenu }
-            //{ MenuType.Lose, LoseMenu },
+            //{ MenuType.Lose, GameOverMenu }
             //{ MenuType.Win, WinMenu }
         };
     }
@@ -89,5 +89,11 @@ public class MenuHandler : MonoBehaviour
             OpenMenu(MenuType.Pause);
             Time.timeScale = 0f;
         }
+    }
+
+    public void ReturnToMainMenu()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(0);
     }
 }

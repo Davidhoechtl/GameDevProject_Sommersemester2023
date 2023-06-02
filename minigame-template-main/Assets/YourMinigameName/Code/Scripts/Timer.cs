@@ -42,9 +42,11 @@ public class Timer : MonoBehaviour
         {
             timerText.text = "";
             timerImageOutline.fillAmount = 0f;
-            
+
             // Round end 
-            // 
+            // So circa
+            //MenuHandler.Instance.GameOverMenu();
+            SceneManager.LoadScene("GameOver");
 
         }
         else

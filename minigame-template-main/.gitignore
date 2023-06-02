@@ -61,3 +61,9 @@ sysinfo.txt
 
 # Crashlytics generated file
 crashlytics-build.properties
+
+# Ignore the Assets Folder
+/[Mm]inigame-template-main/Assets/Imports
+
+# Ignore ProjectSettings Folder
+/[Mm]inigame-template-main/ProjectSettings/*

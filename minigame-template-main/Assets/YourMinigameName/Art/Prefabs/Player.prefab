@@ -30,7 +30,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5164506498854919132}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.86, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -124,7 +124,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5164506498854919132}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
@@ -233,6 +233,18 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 3ccaea4b-2dfb-491c-93a1-3e93ac350b0d
     m_ActionName: Gameplay/Pause[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f62e0cde-866c-4c1a-8b6a-19af618a946a
+    m_ActionName: Lobby/Join[/XInputControllerWindows/rightTrigger,/DualShock4GamepadHID1/rightTrigger,/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 14c071d6-9921-4009-94b6-6e3d939f150f
+    m_ActionName: Lobby/Leave[/XInputControllerWindows/leftTrigger,/DualShock4GamepadHID1/leftTrigger,/Keyboard/backspace]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1fee0ac1-9c88-4de6-ab81-d089d5fceefd
+    m_ActionName: Gameplay/Jump[/Keyboard/space]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Gamepad
   m_DefaultActionMap: Gameplay
@@ -250,4 +262,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df2d47b59f6686d44a47015a40e944c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20
+  speed: 10
+  jumpAmount: 10
+  rb: {fileID: 5164506498854919131}
