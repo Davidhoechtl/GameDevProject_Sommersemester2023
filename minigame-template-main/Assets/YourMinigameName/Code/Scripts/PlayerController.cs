@@ -11,7 +11,8 @@
         public float speed = 0.1f;
         public float jumpAmount = 5;
         private Vector2 movementInput;
-
+        public AudioClip jumpSound;
+        private AudioSource playerAudio;
         private PlayerConfiguration playerConfiguration;
 
         private bool isReady2Jump = true;
@@ -24,6 +25,7 @@
 
         private void Start()
         {
+            playerAudio = GetComponent<AudioSource>();
         }
 
 
@@ -76,6 +78,7 @@
                 Vector3 jumpForce = (Vector3.up + transform.forward * 0.2f) * jumpAmount;
                 rb.AddForce(jumpForce, ForceMode.Impulse);
                 isReady2Jump = false;
+                playerAudio.PlayOneShot(jumpSound, 1.0f);
                 StartCoroutine(Wait(2));
             }
         }

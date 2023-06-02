@@ -11,12 +11,15 @@ public class Timer : MonoBehaviour
     public Image timerImage;
     public Image timerImageOutline;
     public TextMeshProUGUI timerText;
+    public AudioClip tenSecSound;
+    private AudioSource timerAudio;
 
     public float timeDuration = 60f;
     float passedTime;
 
     void Start()
     {
+        timerAudio = GetComponent<AudioSource>();
         passedTime = timeDuration;
     }
 
@@ -34,6 +37,11 @@ public class Timer : MonoBehaviour
 
     private void UpdateText(float remainingTime) // text that gets displayed
     {
+        if(remainingTime == 0)
+        {
+            timerAudio.PlayOneShot(tenSecSound, 1.0f);
+
+        }
         if (remainingTime <= 0) // when out of time
         {
             timerText.text = "";
