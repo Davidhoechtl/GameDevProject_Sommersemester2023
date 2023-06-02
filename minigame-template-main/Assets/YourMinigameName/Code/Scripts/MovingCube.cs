@@ -92,7 +92,7 @@ namespace Assets.YourMinigameName.Code.Scripts
         /// </summary>
         public bool IsIdle()
         {
-            return falling || activated;
+            return !falling && !activated;
         }
 
         private bool falling = false;
