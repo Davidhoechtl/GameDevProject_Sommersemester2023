@@ -67,3 +67,6 @@ crashlytics-build.properties
 
 # Ignore ProjectSettings Folder
 /[Mm]inigame-template-main/ProjectSettings/*
+
+# Ignore Resource Folder
+/[Mm]inigame-template-main/Assets/Resources/*
