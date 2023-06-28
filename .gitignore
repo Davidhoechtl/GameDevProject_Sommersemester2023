@@ -75,4 +75,8 @@ crashlytics-build.properties
 /[Mm]inigame-template-main/Assets/Imports
 
 # Ignore ProjectSettings Folder
-/[Mm]inigame-template-main/ProjectSettings/*
+/[Mm]inigame-template-main/ProjectSettings
+
+# Ignore Resource Folder
+/minigame-template-main/Assets/Resources
+/minigame-template-main/Assets/Resources.meta
