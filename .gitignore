@@ -72,7 +72,11 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
 # Ignore the Assets Folder
-/minigame-template-main/Assets/Imports
+/[Mm]inigame-template-main/Assets/Imports
 
 # Ignore ProjectSettings Folder
-/minigame-template-main/ProjectSettings
+/[Mm]inigame-template-main/ProjectSettings
+
+# Ignore Resource Folder
+/minigame-template-main/Assets/Resources
+/minigame-template-main/Assets/Resources.meta

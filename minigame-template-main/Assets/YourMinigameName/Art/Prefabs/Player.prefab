@@ -263,8 +263,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df2d47b59f6686d44a47015a40e944c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20
-  jumpAmount: 5
+  speed: 10
+  jumpAmount: 10
   jumpSound: {fileID: 8300000, guid: fdeeae58341608247bfc979a17b9513f, type: 3}
   rb: {fileID: 5164506498854919131}
 --- !u!82 &1707456118080332506

@@ -9,6 +9,7 @@ public class DeathBarrier : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             Destroy(other.gameObject);
+            GameHandler.Instance.Invoke("CheckIfGameOver", 1);
         }
     }
 }
