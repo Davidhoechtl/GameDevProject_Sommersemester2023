@@ -23,7 +23,7 @@
 
         public Rigidbody rb;
 
-        private void Start()
+        void Start()
         {
             playerAudio = GetComponent<AudioSource>();
         }

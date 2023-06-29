@@ -42,7 +42,7 @@ public class Timer : MonoBehaviour
 
     private void UpdateText(float remainingTime) // text that gets displayed
     {
-        if(remainingTime == 0)
+        if(remainingTime == 10)
         {
             timerAudio.PlayOneShot(tenSecSound, 1.0f);
 
