@@ -106,8 +106,9 @@ namespace Assets.YourMinigameName.Code.Scripts
         /// </summary>
         public bool IsIdle()
         {
-            return !falling && !activated;
+            return (!falling && !activated) || locked;
         }
+
         private void LockWithProbability()
         {
             if (Random.Range(1, 100) <= 4)
