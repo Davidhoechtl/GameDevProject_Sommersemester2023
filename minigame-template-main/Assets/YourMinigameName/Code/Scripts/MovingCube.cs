@@ -2,6 +2,7 @@
 namespace Assets.YourMinigameName.Code.Scripts
 {
     using System.Collections;
+    using System.Net.Sockets;
     using UnityEngine;
 
     /// <summary>
@@ -33,6 +34,11 @@ namespace Assets.YourMinigameName.Code.Scripts
         /// Y Position that the gameobject has on its initialization
         /// </summary>
         public float YNormalPosition;
+        /// <summary>
+        /// Provides the propability in percent that a moving cube will not come back up and stay at the bottom
+        /// This state is called Locked
+        /// </summary>
+        public float LockProbabilityInPercent = 4;
 
         private void Start()
         {
@@ -41,7 +47,7 @@ namespace Assets.YourMinigameName.Code.Scripts
 
         private void Update()
         {
-            if(falling == false)
+            if (falling == false || locked)
             {
                 return;
             }
@@ -54,6 +60,7 @@ namespace Assets.YourMinigameName.Code.Scripts
                 {
                     transform.position = new Vector3(transform.position.x, YFallingBound, transform.position.z);
                     activated = false;
+                    LockWithProbability();
                     GetComponent<MeshRenderer>().material = StationaryMaterial;
                 }
                 else
@@ -79,12 +86,19 @@ namespace Assets.YourMinigameName.Code.Scripts
         /// Coroutine that needs to be called for the Falling mechanic
         /// </summary>
         /// <param name="indicationTime"> time between indication and falling </param>
-        public IEnumerator StartFalling( float indicationTime )
+        public IEnumerator StartFalling(float indicationTime)
         {
             activated = true;
             GetComponent<MeshRenderer>().material = FallingMaterial;
             yield return new WaitForSeconds( indicationTime );
             falling = true;
+            if (!locked)
+            {
+                activated = true;
+                GetComponent<MeshRenderer>().material = FallingMaterial;
+                yield return new WaitForSeconds(indicationTime);
+                falling = true;
+            }
         }
 
         /// <summary>
@@ -92,9 +106,19 @@ namespace Assets.YourMinigameName.Code.Scripts
         /// </summary>
         public bool IsIdle()
         {
-            return falling || activated;
+            return !falling && !activated;
+        }
+        private void LockWithProbability()
+        {
+            if (Random.Range(1, 100) <= 4)
+            {
+                locked = true;
+                falling = false;
+                activated = false;
+            }
         }
 
+        private bool locked = false;
         private bool falling = false;
         private bool activated = false;
     }

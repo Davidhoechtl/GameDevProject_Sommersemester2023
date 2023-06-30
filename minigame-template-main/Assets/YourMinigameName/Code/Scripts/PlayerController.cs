@@ -12,6 +12,7 @@
         public float jumpAmount = 5;
         private Vector2 movementInput;
         public AudioClip jumpSound;
+        public AudioClip collideSound;
         private AudioSource playerAudio;
         private PlayerConfiguration playerConfiguration;
 
@@ -31,7 +32,7 @@
 
         private void Update()
         {
-            if(canMove && (collisionCount > 0))
+            if (canMove && (collisionCount > 0))
             {
                 transform.Translate(new Vector3(movementInput.x, 0, movementInput.y) * speed * Time.deltaTime);
             }
@@ -101,6 +102,11 @@
             {
                 collisionCount++;
                 SetCanMove(true);
+            }
+            else if (collision.collider.CompareTag("Player"))
+            {
+                // Play sound here
+                AudioSource.PlayClipAtPoint(collideSound, transform.position);
             }
         }
 

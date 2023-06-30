@@ -1,12 +1,20 @@
 
 namespace Assets.YourMinigameName.Code.Scripts
 {
+    using Assets.YourMinigameName.Code.Scripts.DifficultySystem;
     using Assets.YourMinigameName.Code.Scripts.Patterns;
     using System.Collections;
     using UnityEngine;
 
-    public class GameGround : MonoBehaviour
+    public class GameGround : MonoBehaviour, IHasDifficulty
     {
+
+        private float waitBetweenPatternInSec;
+        private float waitBeforeFallingTimeInSec;
+        private bool patternCoroutineFinished;
+
+        private MovingCube[,] map;
+        private PatternService patternService;
         /// <summary>
         /// GameObject that represents one tile of the game map
         /// </summary>
@@ -23,14 +31,16 @@ namespace Assets.YourMinigameName.Code.Scripts
         public Material FallingMaterial;
 
         /// <summary>
-        /// time between indication and falling in seconds
+        /// time between indication and falling in seconds at game start
         /// </summary>
-        public float WaitBeforeFallingTimeInSec = 2;
+        public float StartingWaitBeforeFallingTimeInSec = 2;
 
         /// <summary>
-        /// Time between patterns in seconds
+        /// Time between patterns in seconds at g ame start
         /// </summary>
-        public float WaitBetweenPatternInSec = 2;
+        public float StartingWaitBetweenPatternInSec = 2;
+
+        public float Difficulty { get; private set; }
 
         // Start is called before the first frame update
         void Start()
@@ -38,12 +48,19 @@ namespace Assets.YourMinigameName.Code.Scripts
             map = CreateGameGround();
             patternService = new PatternService();
 
-            StartCoroutine(ApplyPatternWithDelay(WaitBetweenPatternInSec));
+            waitBetweenPatternInSec = StartingWaitBetweenPatternInSec;
+            waitBeforeFallingTimeInSec = StartingWaitBeforeFallingTimeInSec;
+            patternCoroutineFinished = true;
         }
 
         // Update is called once per frame
         void Update()
         {
+            if (patternCoroutineFinished)
+            {
+                StartCoroutine(ApplyPatternWithDelay(waitBetweenPatternInSec));
+                patternCoroutineFinished = false;
+            }
         }
 
         /// <summary>
@@ -53,16 +70,16 @@ namespace Assets.YourMinigameName.Code.Scripts
         /// <returns></returns>
         private IEnumerator ApplyPatternWithDelay(float delayInSeconds)
         {
-            while (true)
-            {
-                while (!IsEveryCubeBackToNormal())
-                {
-                    yield return new WaitForSeconds(0.3f);
-                }
+            yield return new WaitForSeconds(delayInSeconds);
 
-                yield return new WaitForSeconds(delayInSeconds);
-                ApplyMatrix(patternService.GetRandomPattern());
+            ApplyMatrix(patternService.GetRandomPattern());
+
+            while (!IsEveryCubeBackToNormal())
+            {
+                yield return new WaitForSeconds(0.3f);
             }
+
+            patternCoroutineFinished = true;
         }
 
         /// <summary>
@@ -84,7 +101,7 @@ namespace Assets.YourMinigameName.Code.Scripts
                     if (matrix[x, y])
                     {
                         MovingCube cube = map[x, y].GetComponent<MovingCube>();
-                        StartCoroutine(cube.StartFalling(WaitBeforeFallingTimeInSec));
+                        StartCoroutine(cube.StartFalling(waitBeforeFallingTimeInSec));
                     }
                 }
             }
@@ -128,7 +145,7 @@ namespace Assets.YourMinigameName.Code.Scripts
             bool finished = true;
             foreach (MovingCube cube in map)
             {
-                if (cube.IsIdle())
+                if (!cube.IsIdle())
                 {
                     finished = false;
                 }
@@ -137,7 +154,14 @@ namespace Assets.YourMinigameName.Code.Scripts
             return finished;
         }
 
-        private MovingCube[,] map;
-        private PatternService patternService;
+        public void RecalculateDifficulty(float passedTimeInSeconds)
+        {
+            Difficulty = passedTimeInSeconds / 10;
+            waitBetweenPatternInSec = StartingWaitBetweenPatternInSec - Difficulty / 4;
+            waitBeforeFallingTimeInSec = StartingWaitBeforeFallingTimeInSec - Difficulty / 2;
+        }
+
+        
+
     }
 }

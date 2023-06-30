@@ -378,6 +378,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2879300016933518439, guid: e62f47057918b6c468605b98bc43070e,
         type: 3}
+      propertyPath: m_text
+      value: Press any key
+      objectReference: {fileID: 0}
+    - target: {fileID: 2879300016933518439, guid: e62f47057918b6c468605b98bc43070e,
+        type: 3}
       propertyPath: m_fontSize
       value: 18
       objectReference: {fileID: 0}
@@ -814,6 +819,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: 'Player3_UI '
+      objectReference: {fileID: 0}
+    - target: {fileID: 2879300016933518439, guid: e62f47057918b6c468605b98bc43070e,
+        type: 3}
+      propertyPath: m_text
+      value: Press any key
       objectReference: {fileID: 0}
     - target: {fileID: 2879300016933518439, guid: e62f47057918b6c468605b98bc43070e,
         type: 3}
@@ -2333,6 +2343,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2879300016933518439, guid: e62f47057918b6c468605b98bc43070e,
         type: 3}
+      propertyPath: m_text
+      value: Press any key
+      objectReference: {fileID: 0}
+    - target: {fileID: 2879300016933518439, guid: e62f47057918b6c468605b98bc43070e,
+        type: 3}
       propertyPath: m_fontSize
       value: 18
       objectReference: {fileID: 0}
@@ -3074,6 +3089,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player4_UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 2879300016933518439, guid: e62f47057918b6c468605b98bc43070e,
+        type: 3}
+      propertyPath: m_text
+      value: Press any key
       objectReference: {fileID: 0}
     - target: {fileID: 2879300016933518439, guid: e62f47057918b6c468605b98bc43070e,
         type: 3}

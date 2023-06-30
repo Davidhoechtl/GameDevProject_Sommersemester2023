@@ -266,6 +266,7 @@ MonoBehaviour:
   speed: 20
   jumpAmount: 5
   jumpSound: {fileID: 8300000, guid: fdeeae58341608247bfc979a17b9513f, type: 3}
+  collideSound: {fileID: 8300000, guid: 96b1a1dddba0c544791fd50e18d19ef5, type: 3}
   rb: {fileID: 5164506498854919131}
 --- !u!82 &1707456118080332506
 AudioSource:
@@ -279,7 +280,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.865
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -323,7 +324,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0.533
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -353,7 +354,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0.475
       inSlope: 0
       outSlope: 0
       tangentMode: 0
