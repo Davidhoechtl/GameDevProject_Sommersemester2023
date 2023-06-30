@@ -156,12 +156,9 @@ namespace Assets.YourMinigameName.Code.Scripts
 
         public void RecalculateDifficulty(float passedTimeInSeconds)
         {
-            Difficulty = passedTimeInSeconds / 10;
+            Difficulty = passedTimeInSeconds / 20;
             waitBetweenPatternInSec = StartingWaitBetweenPatternInSec - Difficulty / 4;
             waitBeforeFallingTimeInSec = StartingWaitBeforeFallingTimeInSec - Difficulty / 2;
         }
-
-        
-
     }
 }
