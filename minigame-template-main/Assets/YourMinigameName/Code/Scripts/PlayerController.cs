@@ -16,6 +16,7 @@
         private AudioSource playerAudio;
         private PlayerConfiguration playerConfiguration;
 
+        private float knockBackForce = 1;
         private bool isReady2Jump = true;
         private bool canMove = true;
         private int collisionCount = 0;
@@ -84,6 +85,13 @@
             }
         }
 
+        public IEnumerator CollectItem(KnockBackPowerup item)
+        {
+            knockBackForce = item.knockBackForce;
+            yield return new WaitForSecondsRealtime(item.knockBackTime);
+            knockBackForce = 1;
+        }
+
         IEnumerator Wait(float time)
         {
             yield return new WaitForSecondsRealtime(time);
@@ -106,6 +114,7 @@
             else if (collision.collider.CompareTag("Player"))
             {
                 // Play sound here
+                collision.gameObject.GetComponent<Rigidbody>().AddForce(knockBackForce * movementInput, ForceMode.Impulse);
                 AudioSource.PlayClipAtPoint(collideSound, transform.position);
             }
         }
@@ -121,6 +130,5 @@
                 }
             }
         }
-
     }
 }

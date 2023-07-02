@@ -13,7 +13,7 @@ namespace Assets.YourMinigameName.Code.Scripts
         private float waitBeforeFallingTimeInSec;
         private bool patternCoroutineFinished;
 
-        private MovingCube[,] map;
+        public MovingCube[,] map;
         private PatternService patternService;
         /// <summary>
         /// GameObject that represents one tile of the game map
@@ -56,11 +56,11 @@ namespace Assets.YourMinigameName.Code.Scripts
         // Update is called once per frame
         void Update()
         {
-            if (patternCoroutineFinished)
-            {
-                StartCoroutine(ApplyPatternWithDelay(waitBetweenPatternInSec));
-                patternCoroutineFinished = false;
-            }
+            //if (patternCoroutineFinished)
+            //{
+            //    StartCoroutine(ApplyPatternWithDelay(waitBetweenPatternInSec));
+            //    patternCoroutineFinished = false;
+            //}
         }
 
         /// <summary>
