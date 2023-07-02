@@ -18,6 +18,7 @@
 
         private bool isReady2Jump = true;
         private bool canMove = true;
+        public bool startDelay = false;
         private int collisionCount = 0;
         //private int jumpCount = 3;
 
@@ -32,7 +33,7 @@
 
         private void Update()
         {
-            if (canMove && (collisionCount > 0))
+            if (canMove && (collisionCount > 0) && !startDelay)
             {
                 transform.Translate(new Vector3(movementInput.x, 0, movementInput.y) * speed * Time.deltaTime);
             }

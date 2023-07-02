@@ -16,12 +16,12 @@ public class Timer : MonoBehaviour
     public AudioClip tenSecSound;
     private AudioSource timerAudio;
 
-    public int timeDelay = 3;
-    public bool timerIsActive = false;
-
     public float timeDuration = 60f;
     float remainingTime;
     float passedTime;
+
+    private bool playOnce = true;
+
     List<IHasDifficulty> difficultyContainer;
     void Start()
     {
@@ -29,36 +29,27 @@ public class Timer : MonoBehaviour
         difficultyContainer = FindAllDifficultyContainer();
         timerAudio = GetComponent<AudioSource>();
         passedTime = timeDuration;
-        StartCoroutine(SpawnTimer());
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (timerIsActive)
+        timerImage.fillAmount = remainingTime / timeDuration;
+        UpdateTimer();
+        RecalculateDifficulty();
+        if (timerImage.fillAmount <= 0.3) // turns red when time is less than 30 percent
         {
-            timerImage.fillAmount = remainingTime / timeDuration;
-            UpdateTimer();
-            RecalculateDifficulty();
-            if (timerImage.fillAmount <= 0.3) // turns red when time is less than 30 percent
-            {
-                timerImage.CrossFadeColor(Color.red, 1f, true, true);
-            }
+            timerImage.CrossFadeColor(Color.red, 1f, true, true);
         }
-    }
-
-    private IEnumerator SpawnTimer()
-    {
-        yield return new WaitForSeconds(timeDelay);
-        timerIsActive = true;
     }
 
     private void UpdateText(float remainingTime) // text that gets displayed
     {
-        if (remainingTime == 10)
+      
+        if ((Mathf.Round(remainingTime) == 10) && playOnce)
         {
             timerAudio.PlayOneShot(tenSecSound, 1.0f);
-
+            playOnce = false;
         }
         if (remainingTime <= 0) // when out of time
         {
@@ -94,14 +85,12 @@ public class Timer : MonoBehaviour
 
     private List<IHasDifficulty> FindAllDifficultyContainer()
     {
-        Debug.Log("This function was called");
         return GameObject
             .FindGameObjectsWithTag("DifficultyContainer")
             .Select(c => {
                 IHasDifficulty comp = c.GetComponent<IHasDifficulty>();
                 if (comp != null)
                 {
-                    Debug.Log("Difficulty Container: " + comp);
                     return comp;
                 }
                 else

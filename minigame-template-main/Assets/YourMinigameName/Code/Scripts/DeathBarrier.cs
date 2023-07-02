@@ -9,6 +9,11 @@ public class DeathBarrier : MonoBehaviour
     public ParticleSystem splashEffect;
     private AudioSource groundSensorAudioSource;
 
+    private void Start()
+    {
+        groundSensorAudioSource = GetComponent<AudioSource>();
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
@@ -22,12 +27,18 @@ public class DeathBarrier : MonoBehaviour
 
     private void PlayDeathSound()
     {
-        groundSensorAudioSource.PlayOneShot(deathSound);
+        groundSensorAudioSource.PlayOneShot(deathSound, 1.0f);
+        
     }
 
     private void SpawnDeathEffect(Vector3 position)
     {
-        Instantiate(circleEffect, position, Quaternion.identity);
-        Instantiate(splashEffect, position, Quaternion.identity);
+        
+        Quaternion rotation = Quaternion.Euler(-90f, 0f, 0f); // Adjust the rotation as needed
+        ParticleSystem instantiatedCircleEffect = Instantiate(circleEffect, position, rotation);
+        ParticleSystem instantiatedSplashEffect = Instantiate(splashEffect, position, rotation);
+        Vector3 adjustedPosition = new Vector3(position.x, position.y + 5f, position.z);
+        instantiatedCircleEffect.transform.position = adjustedPosition;
+        instantiatedSplashEffect.transform.position = adjustedPosition;
     }
 }
