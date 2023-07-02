@@ -27,7 +27,7 @@ public class KnockBackPowerup : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             PlayerController player = other.gameObject.GetComponent<PlayerController>();
-            StartCoroutine(player.CollectItem(this));
+            player.CollectItem(this);
             Destroy(gameObject);
         }
     }

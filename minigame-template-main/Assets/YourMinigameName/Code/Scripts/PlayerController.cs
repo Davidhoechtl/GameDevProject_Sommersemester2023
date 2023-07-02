@@ -25,10 +25,12 @@
 
 
         public Rigidbody rb;
+        public GameObject PowerupIndicator;
 
         void Start()
         {
             playerAudio = GetComponent<AudioSource>();
+            PowerupIndicator = transform.Find("PowerupIndicator").gameObject;
         }
 
 
@@ -86,10 +88,17 @@
             }
         }
 
-        public IEnumerator CollectItem(KnockBackPowerup item)
+        public void CollectItem(KnockBackPowerup item)
+        {
+            StartCoroutine(UseItem(item));
+        }
+
+        IEnumerator UseItem(KnockBackPowerup item)
         {
             knockBackForce = item.knockBackForce;
+            PowerupIndicator.SetActive(true);
             yield return new WaitForSecondsRealtime(item.knockBackTime);
+            PowerupIndicator.SetActive(false);
             knockBackForce = 1;
         }
 

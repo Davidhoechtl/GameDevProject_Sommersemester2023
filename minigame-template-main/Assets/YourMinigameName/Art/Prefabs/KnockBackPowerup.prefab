@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 744758135650201222}
-  - component: {fileID: 744758135650201221}
   - component: {fileID: 744758135650201220}
   - component: {fileID: 744758135650201227}
   - component: {fileID: 744758135650201223}
+  - component: {fileID: 1442963510272082782}
   m_Layer: 0
   m_Name: KnockBackPowerup
   m_TagString: Untagged
@@ -27,22 +27,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 744758135650201226}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: -0.262947, w: 0.9648103}
   m_LocalPosition: {x: 10.46, y: 4.06, z: 0.53}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.47, y: 1.47, z: 1.47}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &744758135650201221
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 744758135650201226}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -30.49}
 --- !u!23 &744758135650201220
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -112,3 +104,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   knockBackForce: 8
   knockBackTime: 5
+  speed: 1
+--- !u!33 &1442963510272082782
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 744758135650201226}
+  m_Mesh: {fileID: 4300000, guid: 5d4d8c275aacdd943b94b26940482a2e, type: 3}
