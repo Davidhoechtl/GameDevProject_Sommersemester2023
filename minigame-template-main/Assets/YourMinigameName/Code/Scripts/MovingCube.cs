@@ -2,6 +2,7 @@
 namespace Assets.YourMinigameName.Code.Scripts
 {
     using System.Collections;
+    using System.Net.Sockets;
     using UnityEngine;
 
     /// <summary>
@@ -33,6 +34,11 @@ namespace Assets.YourMinigameName.Code.Scripts
         /// Y Position that the gameobject has on its initialization
         /// </summary>
         public float YNormalPosition;
+        /// <summary>
+        /// Provides the propability in percent that a moving cube will not come back up and stay at the bottom
+        /// This state is called Locked
+        /// </summary>
+        public float LockProbabilityInPercent = 4;
 
         /// <summary>
         /// Provides the propability in percent that a moving cube will not come back up and stay at the bottom
@@ -102,7 +108,7 @@ namespace Assets.YourMinigameName.Code.Scripts
         /// </summary>
         public bool IsIdle()
         {
-            return !falling && !activated;
+            return (!falling && !activated) || locked;
         }
 
         private void LockWithProbability()
@@ -116,7 +122,6 @@ namespace Assets.YourMinigameName.Code.Scripts
         }
 
         private bool locked = false;
-
         private bool falling = false;
         private bool activated = false;
     }

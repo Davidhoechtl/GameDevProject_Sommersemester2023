@@ -12,26 +12,31 @@
         public float jumpAmount = 5;
         private Vector2 movementInput;
         public AudioClip jumpSound;
+        public AudioClip collideSound;
         private AudioSource playerAudio;
         private PlayerConfiguration playerConfiguration;
 
+        private float knockBackForce = 1;
         private bool isReady2Jump = true;
         private bool canMove = true;
+        public bool startDelay = false;
         private int collisionCount = 0;
         //private int jumpCount = 3;
 
 
         public Rigidbody rb;
+        public GameObject PowerupIndicator;
 
         void Start()
         {
             playerAudio = GetComponent<AudioSource>();
+            PowerupIndicator = transform.Find("PowerupIndicator").gameObject;
         }
 
 
         private void Update()
         {
-            if(canMove && (collisionCount > 0))
+            if (canMove && (collisionCount > 0) && !startDelay)
             {
                 transform.Translate(new Vector3(movementInput.x, 0, movementInput.y) * speed * Time.deltaTime);
             }
@@ -83,6 +88,20 @@
             }
         }
 
+        public void CollectItem(KnockBackPowerup item)
+        {
+            StartCoroutine(UseItem(item));
+        }
+
+        IEnumerator UseItem(KnockBackPowerup item)
+        {
+            knockBackForce = item.knockBackForce;
+            PowerupIndicator.SetActive(true);
+            yield return new WaitForSecondsRealtime(item.knockBackTime);
+            PowerupIndicator.SetActive(false);
+            knockBackForce = 1;
+        }
+
         IEnumerator Wait(float time)
         {
             yield return new WaitForSecondsRealtime(time);
@@ -102,6 +121,12 @@
                 collisionCount++;
                 SetCanMove(true);
             }
+            else if (collision.collider.CompareTag("Player"))
+            {
+                // Play sound here
+                collision.gameObject.GetComponent<Rigidbody>().AddForce(knockBackForce * movementInput, ForceMode.Impulse);
+                AudioSource.PlayClipAtPoint(collideSound, transform.position);
+            }
         }
 
         private void OnCollisionExit(Collision collision)
@@ -115,6 +140,5 @@
                 }
             }
         }
-
     }
 }
