@@ -66,13 +66,13 @@ public class GameHandler : MonoBehaviour
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
         Debug.Log(players.Length + "  " + IsSinglePlayer);
 
-        if (players.Length == 1 && !IsSinglePlayer)
+        if(players.Length <= 1 && !IsSinglePlayer) 
         {
             IsGameOver = true;
             SceneManager.LoadScene("GameOver");
         }
 
-        if (players.Length == 0 && IsSinglePlayer)
+        if(players.Length <= 0 && IsSinglePlayer)
         {
             IsGameOver = true;
             SceneManager.LoadScene("GameOver");

@@ -11,20 +11,19 @@ public class SetPlayerUI : MonoBehaviour
     public AudioClip uiSound;
     private AudioSource playerAudio;
 
+    [SerializeField]
+    private List<Material> playerMaterials;
+
+    private void Awake()
+    {
+        playerUI = GameObject.Find("Player" + (input.playerIndex + 1).ToString() + "_UI");
+        playerUI.transform.Find("PlayerImage").GetComponent<Image>().color = playerMaterials[input.playerIndex % 4].color;
+        playerUI.transform.Find("PlayerText").GetComponent<TextMeshProUGUI>().text = "Player " + (input.playerIndex + 1).ToString();
+    }
+    
     void Start()
     {
         playerAudio = GetComponent<AudioSource>();
         playerAudio.PlayOneShot(uiSound, 1.0f);
-    }
-    private void Awake()
-    {
-        playerUI = GameObject.Find("Player" + (input.playerIndex + 1).ToString() + "_UI");
-        playerUI.transform.Find("PlayerImage").GetComponent<Image>().color = new Color32(51, 255, 51, 255);
-        playerUI = GameObject.Find("Player" + (input.playerIndex + 1).ToString() + "_UI");
-        playerUI.transform.Find("PlayerImage").GetComponent<Image>().color = new Color32(51, 255, 51, 255);
-        playerUI.transform.Find("PlayerText").GetComponent<TextMeshProUGUI>().text = "Player " + (input.playerIndex + 1).ToString();
-        //playerAudio.PlayOneShot(uiSound, 1.0f);
-
-
     }
 }
