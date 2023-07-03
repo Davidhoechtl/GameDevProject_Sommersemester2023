@@ -44,11 +44,13 @@
         private void Update()
         {
             if (!startDelay)
-            Vector3 rotationAxis = new Vector3(0, lookInput.x, 0);
-            triangle.transform.RotateAround(transform.position, rotationAxis, 200 * Time.deltaTime);
-            if (canMove && (collisionCount > 0))
             {
-                transform.Translate(new Vector3(movementInput.x, 0, movementInput.y) * speed * Time.deltaTime);
+                Vector3 rotationAxis = new Vector3(0, lookInput.x, 0);
+                triangle.transform.RotateAround(transform.position, rotationAxis, 200 * Time.deltaTime);
+                if (canMove && (collisionCount > 0))
+                {
+                    transform.Translate(new Vector3(movementInput.x, 0, movementInput.y) * speed * Time.deltaTime);
+                }
             }
         }
 
