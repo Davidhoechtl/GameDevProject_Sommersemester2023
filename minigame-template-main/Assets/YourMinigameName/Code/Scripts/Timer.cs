@@ -13,21 +13,28 @@ public class Timer : MonoBehaviour
     public Image timerImage;
     public Image timerImageOutline;
     public TextMeshProUGUI timerText;
+    public AudioClip tenSecSound;
+    private AudioSource timerAudio;
 
     public float timeDuration = 60f;
     float remainingTime;
     float passedTime;
+
+    private bool playOnce = true;
+
     List<IHasDifficulty> difficultyContainer;
     void Start()
     {
         remainingTime = timeDuration;
         difficultyContainer = FindAllDifficultyContainer();
+        timerAudio = GetComponent<AudioSource>();
+        passedTime = timeDuration;
     }
 
     // Update is called once per frame
     void Update()
     {
-        timerImage.fillAmount = remainingTime / timeDuration; 
+        timerImage.fillAmount = remainingTime / timeDuration;
         UpdateTimer();
         RecalculateDifficulty();
         if (timerImage.fillAmount <= 0.3) // turns red when time is less than 30 percent
@@ -38,6 +45,12 @@ public class Timer : MonoBehaviour
 
     private void UpdateText(float remainingTime) // text that gets displayed
     {
+      
+        if ((Mathf.Round(remainingTime) == 10) && playOnce)
+        {
+            timerAudio.PlayOneShot(tenSecSound, 1.0f);
+            playOnce = false;
+        }
         if (remainingTime <= 0) // when out of time
         {
             timerText.text = "";

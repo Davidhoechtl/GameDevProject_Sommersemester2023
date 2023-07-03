@@ -406,4 +406,7 @@ MonoBehaviour:
   timerImage: {fileID: 4364741271623314321}
   timerImageOutline: {fileID: 4364741271564371659}
   timerText: {fileID: 4364741271673063942}
+  tenSecSound: {fileID: 8300000, guid: 9eda458751de9534c89423515b0853b8, type: 3}
+  timeDelay: 3
+  timerIsActive: 0
   timeDuration: 60
