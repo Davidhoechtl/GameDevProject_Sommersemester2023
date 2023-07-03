@@ -18,7 +18,7 @@ public class GameHandler : MonoBehaviour
         {
             if (instance == null)
             {
-                Debug.LogError("The Singletion GameHandler is null");
+                Debug.LogError("The Singleton GameHandler is null");
             }
 
             return instance;
