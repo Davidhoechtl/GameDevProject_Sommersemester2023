@@ -45,6 +45,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 477d3db08a61160429bdcdd8a6d15342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerMaterials:
+  - {fileID: 2100000, guid: cfc88d630265c8043bf9d61b49692dbf, type: 2}
+  - {fileID: 2100000, guid: 316cd9292ece5044185bf854979d8f0d, type: 2}
+  - {fileID: 2100000, guid: cbc5f6e0c18544e41950e49943ef2521, type: 2}
+  - {fileID: 2100000, guid: 796ca16a03460874fb72b9ab4a9daf5e, type: 2}
 --- !u!114 &3604517512438465069
 MonoBehaviour:
   m_ObjectHideFlags: 0

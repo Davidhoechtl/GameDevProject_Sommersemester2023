@@ -8,6 +8,13 @@ namespace Assets.YourMinigameName.Code.Scripts
 
     public class GameGround : MonoBehaviour, IHasDifficulty
     {
+
+        private float waitBetweenPatternInSec;
+        private float waitBeforeFallingTimeInSec;
+        private bool patternCoroutineFinished;
+
+        public MovingCube[,] map;
+        private PatternService patternService;
         /// <summary>
         /// GameObject that represents one tile of the game map
         /// </summary>
@@ -149,17 +156,9 @@ namespace Assets.YourMinigameName.Code.Scripts
 
         public void RecalculateDifficulty(float passedTimeInSeconds)
         {
-            Difficulty = passedTimeInSeconds / 10;
+            Difficulty = passedTimeInSeconds / 20;
             waitBetweenPatternInSec = StartingWaitBetweenPatternInSec - Difficulty / 4;
             waitBeforeFallingTimeInSec = StartingWaitBeforeFallingTimeInSec - Difficulty / 2;
         }
-
-        private float waitBetweenPatternInSec;
-        private float waitBeforeFallingTimeInSec;
-        private bool patternCoroutineFinished;
-
-        private MovingCube[,] map;
-        private PatternService patternService;
-
     }
 }

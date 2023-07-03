@@ -1,4 +1,4 @@
-﻿namespace Assets.YourMinigameName.Code.Scripts.DifficultySystem
+namespace Assets.YourMinigameName.Code.Scripts.DifficultySystem
 {
     public interface IHasDifficulty
     {
