@@ -8,9 +8,10 @@
 
     public class PlayerController : MonoBehaviour
     {
-        public float speed = 0.1f;
+        public float speed = 5f;
         public float jumpAmount = 5;
         private Vector2 movementInput;
+        private Vector2 lookInput;
         public AudioClip jumpSound;
         public AudioClip collideSound;
         private AudioSource playerAudio;
@@ -21,6 +22,7 @@
         private bool canMove = true;
         public bool startDelay = false;
         private int collisionCount = 0;
+        public GameObject triangle;
         //private int jumpCount = 3;
 
 
@@ -33,10 +35,18 @@
             PowerupIndicator = transform.Find("PowerupIndicator").gameObject;
         }
 
+        private void FixedUpdate()
+        {
+            rb.AddForce(Physics.gravity * rb.mass * 5);
+        }
+
 
         private void Update()
         {
-            if (canMove && (collisionCount > 0) && !startDelay)
+            if (!startDelay)
+            Vector3 rotationAxis = new Vector3(0, lookInput.x, 0);
+            triangle.transform.RotateAround(transform.position, rotationAxis, 200 * Time.deltaTime);
+            if (canMove && (collisionCount > 0))
             {
                 transform.Translate(new Vector3(movementInput.x, 0, movementInput.y) * speed * Time.deltaTime);
             }
@@ -45,6 +55,11 @@
         public void OnMove(InputAction.CallbackContext ctx)
         {
             movementInput = ctx.ReadValue<Vector2>();
+        }
+
+        public void OnLook(InputAction.CallbackContext ctx)
+        {
+            lookInput = ctx.ReadValue<Vector2>();
         }
 
         public void OnPause(InputAction.CallbackContext ctx)
@@ -74,14 +89,19 @@
             {
                 OnJump(obj);
             }
+            else if(obj.action.name == playerConfiguration.Input.actions.actionMaps[2].actions[3].name)
+            {
+                OnLook(obj);
+            }
         }
 
         public void OnJump(InputAction.CallbackContext ctx)
         {
             if (isReady2Jump)
             {
-                Vector3 jumpForce = (Vector3.up + transform.forward * 0.2f) * jumpAmount;
-                rb.AddForce(jumpForce, ForceMode.Impulse);
+                Vector3 jumpDirection = (triangle.transform.position - transform.position).normalized;
+                
+                rb.AddForce(jumpDirection * jumpAmount, ForceMode.Impulse);
                 isReady2Jump = false;
                 playerAudio.PlayOneShot(jumpSound, 1.0f);
                 StartCoroutine(Wait(2));
