@@ -23,7 +23,7 @@ public class InitializeLevel : MonoBehaviour
         for (int i = 0; i < playerConfigs.Length; ++i)
         {
             var player = Instantiate(playerPrefab, playerSpawnPoints[i].position, playerSpawnPoints[i].rotation, gameObject.transform);
-            //player.GetComponent<Renderer>().material = playerConfigs[i].PlayerMaterial;
+            player.GetComponent<Renderer>().material = playerConfigs[i].PlayerMaterial;
             //player.GetComponent<PlayerController>().InitializePlayer(playerConfigs[i]);
             // Initialize the PlayerController
             var playerController = player.GetComponent<PlayerController>();
@@ -43,6 +43,7 @@ public class InitializeLevel : MonoBehaviour
             // Disable player movement for 3 seconds
             playerController.GetComponent<PlayerController>().startDelay = true;
             StartCoroutine(EnablePlayerMovement(playerController, 2f));
+            GameHandler.Instance.Setup();
         }
     }
 

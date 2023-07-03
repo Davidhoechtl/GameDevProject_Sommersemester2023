@@ -10,7 +10,9 @@ public class GameHandler : MonoBehaviour
 {
     public bool IsGameOver;
     public bool IsSinglePlayer;
-    public static GameHandler Instance 
+    private bool isSetup = false;
+
+    public static GameHandler Instance
     {
         get
         {
@@ -27,20 +29,20 @@ public class GameHandler : MonoBehaviour
 
     private void Awake()
     {
-        if( instance == null)
+        if (instance == null)
         {
             instance = this;
-            Setup();
+            //Setup();
         }
-        else if(instance != this)
+        else if (instance != this)
         {
             Destroy(gameObject);
         }
 
-        DontDestroyOnLoad(this);
+        //DontDestroyOnLoad(this);
     }
 
-    private void Setup()
+    public void Setup()
     {
         instance.IsGameOver = false;
 
@@ -52,27 +54,30 @@ public class GameHandler : MonoBehaviour
         {
             instance.IsSinglePlayer = false;
         }
-
-        Debug.Log(GameObject.FindGameObjectsWithTag("Player").Length + "  " + instance.IsSinglePlayer);
+        isSetup = true;
+        //Debug.Log(GameObject.FindGameObjectsWithTag("Player").Length + "  " + instance.IsSinglePlayer);
     }
 
     private void FixedUpdate()
     {
-        CheckIfGameOver();
+        if(isSetup)
+        {
+            CheckIfGameOver();
+        }
     }
 
     public void CheckIfGameOver()
     {
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-        Debug.Log(players.Length + "  " + IsSinglePlayer);
+        //Debug.Log(players.Length + "  " + IsSinglePlayer);
 
-        if(players.Length <= 1 && !IsSinglePlayer) 
+        if (players.Length <= 1 && !IsSinglePlayer)
         {
             IsGameOver = true;
             SceneManager.LoadScene("GameOver");
         }
 
-        if(players.Length <= 0 && IsSinglePlayer)
+        if (players.Length <= 0 && IsSinglePlayer)
         {
             IsGameOver = true;
             SceneManager.LoadScene("GameOver");
