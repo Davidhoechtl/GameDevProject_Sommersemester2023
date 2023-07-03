@@ -24,6 +24,9 @@
 
         private void Start()
         {
+            isReady2Jump = false;
+            StartCoroutine(Wait(0.5f));
+            DontDestroyOnLoad(gameObject);
         }
 
 
