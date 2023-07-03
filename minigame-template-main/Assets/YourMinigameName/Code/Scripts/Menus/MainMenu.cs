@@ -49,6 +49,12 @@ public class MainMenu : MonoBehaviour
             Debug.Log("No Players to play");
         }
     }
+
+    public void Tutorial()
+    {
+        SceneManager.LoadScene("Tutorial");
+    }
+
     public void StartCredits()
     {
         ui.SetActive(false);

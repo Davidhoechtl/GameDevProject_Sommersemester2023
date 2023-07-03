@@ -17,7 +17,7 @@ public class GameOverMenu : MonoBehaviour
 
     public void PlayTutorial()
     {
-        //SceneManager.LoadScene(2);
+        SceneManager.LoadScene("Tutorial");
         Debug.Log("Load Tutorial Scene");
     }
 
