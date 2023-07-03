@@ -14,14 +14,10 @@ public class GameHandler : MonoBehaviour
     {
         get
         {
-            if(instance == null)
+            if (instance == null)
             {
                 Debug.LogError("The Singletion GameHandler is null");
             }
-        else
-        {
-            Instance = this;
-            IsGameOver = false;
 
             return instance;
         }
@@ -64,7 +60,6 @@ public class GameHandler : MonoBehaviour
     {
         CheckIfGameOver();
     }
-    */
 
     public void CheckIfGameOver()
     {

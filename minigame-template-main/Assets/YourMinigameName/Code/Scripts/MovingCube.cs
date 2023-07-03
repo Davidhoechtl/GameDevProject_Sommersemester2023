@@ -40,12 +40,6 @@ namespace Assets.YourMinigameName.Code.Scripts
         /// </summary>
         public float LockProbabilityInPercent = 4;
 
-        /// <summary>
-        /// Provides the propability in percent that a moving cube will not come back up and stay at the bottom
-        /// This state is called Locked
-        /// </summary>
-        public float LockProbabilityInPercent = 4;
-
         private void Start()
         {
             YNormalPosition = transform.position.y;
