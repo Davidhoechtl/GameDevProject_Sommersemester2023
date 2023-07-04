@@ -5,6 +5,7 @@
     using UnityEngine.InputSystem;
     using static UnityEngine.InputSystem.InputAction;
     using System.Collections;
+    using UnityEngine.InputSystem.XR;
 
     public class PlayerController : MonoBehaviour
     {
@@ -161,6 +162,12 @@
                     SetCanMove(false);
                 }
             }
+        }
+
+        public void DeletePlayer()
+        {
+            PlayerConfiguration.Input.onActionTriggered -= Input_onActionTriggered;
+            Destroy(this.gameObject);
         }
     }
 }
