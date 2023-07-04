@@ -5,6 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class GameOverMenu : MonoBehaviour
 {
+    private void Awake()
+    {
+        RankingInfo rankingInfo = DataSaver.loadData<RankingInfo>("RankingInfo");
+    }
+
     public void ReturnToMainMenu()
     {
         SceneManager.LoadScene(0);
