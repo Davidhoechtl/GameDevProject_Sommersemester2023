@@ -17,6 +17,7 @@
         public AudioClip collideSound;
         private AudioSource playerAudio;
         public PlayerConfiguration PlayerConfiguration;
+        public int PlayerId;
 
         private float knockBackForce = 1;
         private bool isReady2Jump = true;
@@ -75,6 +76,7 @@
         {
             PlayerConfiguration = playerConfig;
             playerConfig.Input.onActionTriggered += Input_onActionTriggered;
+            PlayerId = PlayerConfiguration.PlayerIndex + 1;
             //triangle = GameObject.Find("Triangle");
         }
 

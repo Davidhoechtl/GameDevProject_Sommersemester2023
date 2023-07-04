@@ -7675,6 +7675,11 @@ PrefabInstance:
       propertyPath: timeDelay
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 3057400041356881159, guid: 8edfda81e55b16042816440d0dafd73d,
+        type: 3}
+      propertyPath: timeDuration
+      value: 60
+      objectReference: {fileID: 0}
     - target: {fileID: 4364741272692454084, guid: 8edfda81e55b16042816440d0dafd73d,
         type: 3}
       propertyPath: m_Name
@@ -12742,6 +12747,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: 'TimerUI '
+      objectReference: {fileID: 0}
+    - target: {fileID: 4364741272692454084, guid: 8edfda81e55b16042816440d0dafd73d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4364741272692454088, guid: 8edfda81e55b16042816440d0dafd73d,
         type: 3}
