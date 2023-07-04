@@ -15,7 +15,7 @@
         public AudioClip jumpSound;
         public AudioClip collideSound;
         private AudioSource playerAudio;
-        private PlayerConfiguration playerConfiguration;
+        public PlayerConfiguration PlayerConfiguration;
 
         private float knockBackForce = 1;
         private bool isReady2Jump = true;
@@ -72,26 +72,26 @@
 
         public void InitializePlayer(PlayerConfiguration playerConfig)
         {
-            playerConfiguration = playerConfig;
-            //material change
+            PlayerConfiguration = playerConfig;
             playerConfig.Input.onActionTriggered += Input_onActionTriggered;
+            //triangle = GameObject.Find("Triangle");
         }
 
-        private void Input_onActionTriggered(CallbackContext obj)
+        public void Input_onActionTriggered(CallbackContext obj)
         {
-            if (obj.action.name == playerConfiguration.Input.actions.actionMaps[2].actions[0].name)
+            if (obj.action.name == PlayerConfiguration.Input.actions.actionMaps[2].actions[0].name)
             {
                 OnMove(obj);
             }
-            else if (obj.action.name == playerConfiguration.Input.actions.actionMaps[2].actions[1].name)
+            else if (obj.action.name == PlayerConfiguration.Input.actions.actionMaps[2].actions[1].name)
             {
                 OnPause(obj);
             }
-            else if (obj.action.name == playerConfiguration.Input.actions.actionMaps[2].actions[2].name)
+            else if (obj.action.name == PlayerConfiguration.Input.actions.actionMaps[2].actions[2].name)
             {
                 OnJump(obj);
             }
-            else if(obj.action.name == playerConfiguration.Input.actions.actionMaps[2].actions[3].name)
+            else if(obj.action.name == PlayerConfiguration.Input.actions.actionMaps[2].actions[3].name)
             {
                 OnLook(obj);
             }

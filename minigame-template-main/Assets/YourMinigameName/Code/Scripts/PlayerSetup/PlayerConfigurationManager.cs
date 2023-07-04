@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -15,16 +16,11 @@ public class PlayerConfigurationManager : MonoBehaviour
 
     private void Awake()
     {
-        if(Instance != null)
+        if(Instance != null && Instance != this)
         {
-            /*GameObject[] configs = GameObject.FindGameObjectsWithTag("PlayerConfiguration");
-
-            for(int i = 0; i < configs.Length; ++i)
-            {
-                Destroy(configs[i]);
-            }*/
-            Debug.LogError("More than one PlayerConfigurationManager");
-            //Instance = null;
+            
+            Destroy(this.gameObject);
+            Instance.ClearPlayerConfigs();
         }
         else
         {
@@ -32,7 +28,6 @@ public class PlayerConfigurationManager : MonoBehaviour
             DontDestroyOnLoad(Instance);
         }
         playerConfigs = new List<PlayerConfiguration>();
-        //playerMaterials = new List<Material>();
     }
 
     public void HandlePlayerJoin(PlayerInput pi)
@@ -51,6 +46,16 @@ public class PlayerConfigurationManager : MonoBehaviour
         return playerConfigs;
     }
 
+    public void ClearPlayerConfigs()
+    {
+        GameObject[] configs = GameObject.FindGameObjectsWithTag("PlayerConfiguration");
+
+        for(int i = 0; i < configs.Length; ++i)
+        {
+            Destroy(configs[i]);
+        }
+        playerConfigs = new List<PlayerConfiguration>();
+    }
 }
 
 public class PlayerConfiguration
