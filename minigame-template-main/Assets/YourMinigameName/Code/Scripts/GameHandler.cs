@@ -1,3 +1,4 @@
+using Assets.YourMinigameName.Code.Scripts;
 using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
@@ -74,12 +75,24 @@ public class GameHandler : MonoBehaviour
         if (players.Length <= 1 && !IsSinglePlayer)
         {
             IsGameOver = true;
+            for(int i = 0; i < players.Length; i++)
+            {
+                PlayerController controller = players[i].gameObject.GetComponent<PlayerController>();
+                controller.PlayerConfiguration.Input.onActionTriggered -= controller.Input_onActionTriggered;
+                Destroy(players[i]);
+            }
+
             SceneManager.LoadScene("GameOver");
         }
 
         if (players.Length <= 0 && IsSinglePlayer)
         {
             IsGameOver = true;
+            for (int i = 0; i < players.Length; i++)
+            {
+                Destroy(players[i]);
+            }
+            
             SceneManager.LoadScene("GameOver");
         }
     }
