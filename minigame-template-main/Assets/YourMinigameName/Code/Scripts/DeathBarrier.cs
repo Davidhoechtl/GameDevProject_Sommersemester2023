@@ -1,3 +1,4 @@
+using Assets.YourMinigameName.Code.Scripts;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,7 +21,9 @@ public class DeathBarrier : MonoBehaviour
         {
             PlayDeathSound();
             SpawnDeathEffect(other.transform.position);
-            Destroy(other.gameObject);
+            PlayerController controller = other.gameObject.GetComponent<PlayerController>();
+            controller.DeletePlayer();
+            //Destroy(other.gameObject);
             GameHandler.Instance.Invoke("CheckIfGameOver", 1);
         }
     }

@@ -78,8 +78,7 @@ public class GameHandler : MonoBehaviour
             for(int i = 0; i < players.Length; i++)
             {
                 PlayerController controller = players[i].gameObject.GetComponent<PlayerController>();
-                controller.PlayerConfiguration.Input.onActionTriggered -= controller.Input_onActionTriggered;
-                Destroy(players[i]);
+                controller.DeletePlayer();
             }
 
             SceneManager.LoadScene("GameOver");
@@ -88,11 +87,6 @@ public class GameHandler : MonoBehaviour
         if (players.Length <= 0 && IsSinglePlayer)
         {
             IsGameOver = true;
-            for (int i = 0; i < players.Length; i++)
-            {
-                Destroy(players[i]);
-            }
-            
             SceneManager.LoadScene("GameOver");
         }
     }
