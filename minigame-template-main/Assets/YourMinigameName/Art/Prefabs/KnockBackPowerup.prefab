@@ -102,8 +102,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47973e75657791846918475ea12c8ce6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  knockBackForce: 8
-  knockBackTime: 5
+  knockBackForce: 20
+  knockBackTime: 6
   speed: 1
 --- !u!33 &1442963510272082782
 MeshFilter:

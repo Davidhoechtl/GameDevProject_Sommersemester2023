@@ -149,7 +149,8 @@
             else if (collision.collider.CompareTag("Player"))
             {
                 // Play sound here
-                collision.gameObject.GetComponent<Rigidbody>().AddForce(knockBackForce * movementInput, ForceMode.Impulse);
+                Vector2 direction = collision.gameObject.transform.position - transform.position;
+                collision.gameObject.GetComponent<Rigidbody>().AddForce(knockBackForce * direction.normalized, ForceMode.Impulse);
                 AudioSource.PlayClipAtPoint(collideSound, transform.position);
             }
         }
