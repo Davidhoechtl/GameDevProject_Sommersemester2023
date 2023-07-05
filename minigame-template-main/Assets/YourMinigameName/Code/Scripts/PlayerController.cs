@@ -20,7 +20,7 @@
         public int PlayerId;
 
         private float knockBackForce = 1;
-        private bool isReady2Jump = true;
+        private bool isReady2Jump = false;
         private bool canMove = true;
         public bool startDelay = false;
         private int collisionCount = 0;
@@ -35,6 +35,7 @@
         {
             playerAudio = GetComponent<AudioSource>();
             PowerupIndicator = transform.Find("PowerupIndicator").gameObject;
+            StartCoroutine(Wait(2));
         }
 
         private void FixedUpdate()
