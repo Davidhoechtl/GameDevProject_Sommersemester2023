@@ -57,9 +57,15 @@ public class MainMenu : MonoBehaviour
 
     public void StartCredits()
     {
+        StartCoroutine(SmallDelay());
+        StartCoroutine(PlayCredits());
+    }
+
+    IEnumerator SmallDelay() // to let the click-sound play
+    {
+        yield return new WaitForSeconds(0.1f);
         ui.SetActive(false);
         credits.SetActive(true);
-        StartCoroutine(PlayCredits());
     }
 
     IEnumerator PlayCredits()
@@ -72,10 +78,10 @@ public class MainMenu : MonoBehaviour
 
     public void QuitGame()
     {
-        #if UNITY_EDITOR
-                UnityEditor.EditorApplication.isPlaying = false;
-        #else
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
                     Application.Quit();
-        #endif
+#endif
     }
 }
