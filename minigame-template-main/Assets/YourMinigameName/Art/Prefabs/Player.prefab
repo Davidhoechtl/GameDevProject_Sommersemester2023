@@ -285,6 +285,7 @@ MonoBehaviour:
   jumpAmount: 25
   jumpSound: {fileID: 8300000, guid: fdeeae58341608247bfc979a17b9513f, type: 3}
   collideSound: {fileID: 8300000, guid: 96b1a1dddba0c544791fd50e18d19ef5, type: 3}
+  PlayerId: 0
   startDelay: 0
   triangle: {fileID: 5453450345588043736}
   rb: {fileID: 5164506498854919131}
@@ -460,7 +461,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224,
     type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.09411765}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

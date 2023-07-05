@@ -24,6 +24,9 @@ public class InitializeLevel : MonoBehaviour
         {
             var player = Instantiate(playerPrefab, playerSpawnPoints[i].position, playerSpawnPoints[i].rotation, gameObject.transform);
             player.GetComponent<Renderer>().material = playerConfigs[i].PlayerMaterial;
+
+            player.GetComponentInChildren<SpriteRenderer>().material = playerConfigs[i].PlayerMaterial;
+
             //player.GetComponent<PlayerController>().InitializePlayer(playerConfigs[i]);
             // Initialize the PlayerController
             var playerController = player.GetComponent<PlayerController>();
