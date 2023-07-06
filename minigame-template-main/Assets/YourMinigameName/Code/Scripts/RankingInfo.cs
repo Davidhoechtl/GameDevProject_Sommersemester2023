@@ -5,13 +5,20 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 [Serializable]
-public class RankingInfo
+public class RankingInfo : MonoBehaviour
 {
-    public List<int> winnerIDs = new List<int>();
+    public Dictionary<int, int> playerRankings;
 
-    public RankingInfo(List<int> playerList) 
+    private void Start()
     {
-        winnerIDs = playerList;
+        playerRankings = new Dictionary<int, int>();
+        DontDestroyOnLoad(this.gameObject);
+    }
+
+    public void AddPlayer(int id, int placement)
+    {
+        playerRankings.Add(id, placement);
+        //playerCount--;
     }
 }
 
