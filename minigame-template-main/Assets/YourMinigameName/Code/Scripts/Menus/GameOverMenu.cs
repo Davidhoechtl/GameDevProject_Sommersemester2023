@@ -46,6 +46,7 @@ public class GameOverMenu : MonoBehaviour
 
     public void ReturnToMainMenu()
     {
+        PlayerConfigurationManager.Instance.DestroyPlayerConfiguartionManager();
         SceneManager.LoadScene(0);
     }
 
@@ -62,7 +63,7 @@ public class GameOverMenu : MonoBehaviour
 
     public void QuitGame()
     {
-        //Application.Quit();
         Debug.Log("Quit Game");
+        Application.Quit();
     }
 }

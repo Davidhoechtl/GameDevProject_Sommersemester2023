@@ -57,6 +57,11 @@ public class PlayerConfigurationManager : MonoBehaviour
         }
         playerConfigs = new List<PlayerConfiguration>();
     }
+
+    public void DestroyPlayerConfiguartionManager()
+    {
+        Destroy(gameObject);
+    }
 }
 
 public class PlayerConfiguration

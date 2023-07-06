@@ -53,6 +53,7 @@ public class Tutorial : MonoBehaviour
 
     public void ReturnToMainMenu()
     {
+        PlayerConfigurationManager.Instance.DestroyPlayerConfiguartionManager();
         SceneManager.LoadScene(0);
     }
 }
