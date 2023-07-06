@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Tutorial : MonoBehaviour
 {
@@ -48,5 +49,10 @@ public class Tutorial : MonoBehaviour
             images[index].gameObject.SetActive(true);
         }
         Debug.Log("index: " + index);
+    }
+
+    public void ReturnToMainMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 }
