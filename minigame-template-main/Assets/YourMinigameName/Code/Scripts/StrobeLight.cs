@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class StrobeLight : MonoBehaviour
 {
-    private float beatThreshold = 1f; // The amplitude threshold for triggering the strobe light effect
     private float strobeDuration = 0.5f; // The duration of each strobe light cycle
     private float bassThreshold = -8f; // The amplitude threshold for triggering the bass effect
     private float bassMultiplier = 100f; // The multiplier to apply to the bass amplitude
-    public Light light; // The light component to be strobed
+    public Light light = new Light(); // The light component to be strobed
 
     private float strobeTimer = 0f; // The current timer for the strobe effect
 

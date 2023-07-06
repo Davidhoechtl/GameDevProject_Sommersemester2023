@@ -12,6 +12,8 @@ public class PlayerConfigurationManager : MonoBehaviour
     [SerializeField]
     private List<Material> playerMaterials;
 
+    public float musicVolume;
+
     public static PlayerConfigurationManager Instance { get; private set; }
 
     private void Awake()

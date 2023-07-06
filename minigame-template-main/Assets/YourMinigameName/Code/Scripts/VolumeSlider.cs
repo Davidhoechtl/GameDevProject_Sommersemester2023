@@ -17,5 +17,6 @@ public class VolumeSlider : MonoBehaviour
     void Update()
     {
         backgroundMusic.volume = volumeSlider.value;
+        PlayerConfigurationManager.Instance.musicVolume = volumeSlider.value;
     }
 }

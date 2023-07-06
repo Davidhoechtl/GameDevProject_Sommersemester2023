@@ -15,6 +15,7 @@ public class GameHandler : MonoBehaviour
     [SerializeField]
     private GameObject rankingInfo;
     private RankingInfo rankingInfoScript;
+    private AudioSource backgroundMusic;
 
     public static GameHandler Instance
     {
@@ -43,6 +44,8 @@ public class GameHandler : MonoBehaviour
             Destroy(gameObject);
         }
 
+
+
         //DontDestroyOnLoad(this);
     }
 
@@ -50,6 +53,9 @@ public class GameHandler : MonoBehaviour
     {
         instance.IsGameOver = false;
         rankingInfoScript = rankingInfo.GetComponent<RankingInfo>();
+
+        backgroundMusic = GameObject.Find("Main Camera").GetComponent<AudioSource>();
+        backgroundMusic.volume = PlayerConfigurationManager.Instance.musicVolume;
 
         if (GameObject.FindGameObjectsWithTag("Player").Length == 1)
         {
