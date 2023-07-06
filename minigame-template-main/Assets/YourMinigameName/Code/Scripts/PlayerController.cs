@@ -24,6 +24,7 @@
         private bool canMove = true;
         public bool startDelay = false;
         private int collisionCount = 0;
+        private float turnSpeed = 400f;
         public GameObject triangle;
         //private int jumpCount = 3;
 
@@ -49,7 +50,7 @@
             if (!startDelay)
             {
                 Vector3 rotationAxis = new Vector3(0, lookInput.x, 0);
-                triangle.transform.RotateAround(transform.position, rotationAxis, 200 * Time.deltaTime);
+                triangle.transform.RotateAround(transform.position, rotationAxis, turnSpeed * Time.deltaTime);
                 if (canMove && (collisionCount > 0))
                 {
                     transform.Translate(new Vector3(movementInput.x, 0, movementInput.y) * speed * Time.deltaTime);
