@@ -9,19 +9,29 @@ public class DeathBarrier : MonoBehaviour
     public ParticleSystem circleEffect;
     public ParticleSystem splashEffect;
     private AudioSource groundSensorAudioSource;
+    [SerializeField]
+    private GameObject rankingInfo;
+    private RankingInfo rankingInfoScript;
 
     private void Start()
     {
         groundSensorAudioSource = GetComponent<AudioSource>();
+        rankingInfoScript = rankingInfo.GetComponent<RankingInfo>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            
             PlayDeathSound();
             SpawnDeathEffect(other.transform.position);
             PlayerController controller = other.gameObject.GetComponent<PlayerController>();
+            if(!GameHandler.Instance.IsSinglePlayer)
+            {
+                rankingInfoScript.AddPlayer(controller.PlayerId, GameObject.FindGameObjectsWithTag("Player").Length);
+            }
+            
             controller.DeletePlayer();
             //Destroy(other.gameObject);
             GameHandler.Instance.Invoke("CheckIfGameOver", 1);

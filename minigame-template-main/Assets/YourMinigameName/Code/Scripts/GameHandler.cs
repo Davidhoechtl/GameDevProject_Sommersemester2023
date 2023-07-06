@@ -12,6 +12,9 @@ public class GameHandler : MonoBehaviour
     public bool IsGameOver;
     public bool IsSinglePlayer;
     private bool isSetup = false;
+    [SerializeField]
+    private GameObject rankingInfo;
+    private RankingInfo rankingInfoScript;
 
     public static GameHandler Instance
     {
@@ -46,6 +49,7 @@ public class GameHandler : MonoBehaviour
     public void Setup()
     {
         instance.IsGameOver = false;
+        rankingInfoScript = rankingInfo.GetComponent<RankingInfo>();
 
         if (GameObject.FindGameObjectsWithTag("Player").Length == 1)
         {
@@ -70,7 +74,6 @@ public class GameHandler : MonoBehaviour
     public void CheckIfGameOver()
     {
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-        List<PlayerConfiguration> winners = new List<PlayerConfiguration>();
         //Debug.Log(players.Length + "  " + IsSinglePlayer);
 
         if (players.Length <= 1 && !IsSinglePlayer)
@@ -100,6 +103,7 @@ public class GameHandler : MonoBehaviour
         {
             PlayerController controller = players[i].gameObject.GetComponent<PlayerController>();
             winners.Add(controller.PlayerId);
+            rankingInfoScript.AddPlayer(controller.PlayerId, 1);
             Debug.Log("Player " + controller.PlayerId + " won!");
             controller.DeletePlayer();
         }
@@ -108,9 +112,6 @@ public class GameHandler : MonoBehaviour
         {
             Debug.Log("No one won!!");
         }
-
-        RankingInfo ranking = new RankingInfo(winners);
-        DataSaver.saveData(ranking, "RankingInfo");
 
         SceneManager.LoadScene("GameOver");
     }
