@@ -12,6 +12,8 @@ public class MainMenu : MonoBehaviour
     public GameObject ui;
     public GameObject credits;
 
+    public bool ignoreFirstInput = true;
+
     private void Start()
     {
         if (Instance != null)
@@ -39,10 +41,14 @@ public class MainMenu : MonoBehaviour
 
     public void StartGame()
     {
-        if (canStartGame)
+        if (canStartGame && !ignoreFirstInput)
         {
             Debug.Log("resuming game");
             SceneManager.LoadScene("MainGame");
+        } 
+        else if (canStartGame && ignoreFirstInput)
+        {
+            ignoreFirstInput = false;
         }
         else
         {

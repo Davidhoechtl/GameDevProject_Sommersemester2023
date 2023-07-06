@@ -38,6 +38,7 @@ public class PlayerConfigurationManager : MonoBehaviour
         if(!playerConfigs.Any(player => player.PlayerIndex == pi.playerIndex))
         {
             playerConfigs.Add(new PlayerConfiguration(pi, playerMaterials[pi.playerIndex % 4]));
+            MainMenu.Instance.ignoreFirstInput = true;
         }
     }
 
